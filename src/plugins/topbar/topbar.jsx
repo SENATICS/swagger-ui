@@ -2,7 +2,7 @@ import React, { cloneElement } from "react"
 import PropTypes from "prop-types"
 
 //import "./topbar.less"
-import Logo from "./logo_small.png"
+import Logo from "./senatics.png"
 import {parseSearch, serializeSearch} from "../../core/utils"
 
 export default class Topbar extends React.Component {
@@ -132,8 +132,21 @@ export default class Topbar extends React.Component {
     }
     else {
       formOnSubmit = this.downloadUrl
-      control.push(<input className="download-url-input" type="text" onChange={ this.onUrlChange } value={this.state.url} disabled={isLoading} style={inputStyle} />)
-      control.push(<Button className="download-url-button" onClick={ this.downloadUrl }>Explore</Button>)
+
+       let rows = []
+       rows.push(<option key={1} value={'http://www.senatics.gov.py'}>{'SENATICS'}</option>)
+       rows.push(<option key={2} value={'http://www.stp.gov.py'}>{'STP'}</option>)
+
+      control.push(
+        <label className="select-label" htmlFor="select"><span>Seleccione</span>
+          <select id="select" disabled={isLoading}>
+            {rows}
+          </select>
+        </label>
+      )
+
+      //control.push(<input className="download-url-input" type="text" onChange={ this.onUrlChange } value={this.state.url} disabled={isLoading} style={inputStyle} />)
+      control.push(<Button className="download-url-button" onClick={ this.downloadUrl }>Explorar</Button>)
     }
 
     return (
@@ -141,8 +154,8 @@ export default class Topbar extends React.Component {
         <div className="wrapper">
           <div className="topbar-wrapper">
             <Link>
-              <img height="30" width="30" src={ Logo } alt="Swagger UI"/>
-              <span>swagger</span>
+              <img src={ Logo } alt="Swagger UI"/>
+              <span></span>
             </Link>
             <form className="download-url-wrapper" onSubmit={formOnSubmit}>
               {control.map((el, i) => cloneElement(el, { key: i }))}

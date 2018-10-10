@@ -23,6 +23,7 @@ export default class XPane extends React.Component {
 
     let showEditorAction = ()=> layoutActions.show("editor", !showEditor)
 
+
     return (
       <Container fullscreen>
 
@@ -54,9 +55,10 @@ export default class XPane extends React.Component {
 
         </Row>
 
-        <Footer></Footer>
+         <Footer></Footer>
 
       </Container>
+     
     )
   }
 

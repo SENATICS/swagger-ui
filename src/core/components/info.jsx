@@ -88,7 +88,7 @@ export class InfoUrl extends React.PureComponent {
 
     const Link = getComponent("Link")
 
-    return <Link target="_blank" href={ sanitizeUrl(url) }><span className="url"> { url } </span></Link>
+   return <Link target="_blank" href={ sanitizeUrl(url) }><span className="url"> { url } </span></Link>
   }
 }
 
@@ -106,7 +106,7 @@ export default class Info extends React.Component {
     let { info, url, host, basePath, getComponent, externalDocs } = this.props
     let version = info.get("version")
     let description = info.get("description")
-    let title = info.get("title")
+    let title = info.get("title")   
     let termsOfService = info.get("termsOfService")
     let contact = info.get("contact")
     let license = info.get("license")
@@ -143,7 +143,7 @@ export default class Info extends React.Component {
         { externalDocsUrl ?
             <Link target="_blank" href={sanitizeUrl(externalDocsUrl)}>{externalDocsDescription || externalDocsUrl}</Link>
         : null }
-
+        
       </div>
     )
   }

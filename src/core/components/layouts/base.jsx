@@ -30,6 +30,8 @@ export default class BaseLayout extends React.Component {
     let isSwagger2 = specSelectors.isSwagger2()
     let isOAS3 = specSelectors.isOAS3()
 
+    let Footer = getComponent("footer", true)
+
     const isSpecEmpty = !specSelectors.specStr()
 
     if(isSpecEmpty) {
@@ -77,7 +79,13 @@ export default class BaseLayout extends React.Component {
               </Col>
             </Row>
           </VersionPragmaFilter>
-        </div>
+          
+          <Row>
+            <Col mobile={12} desktop={12} >
+              <Footer></Footer>
+            </Col>
+          </Row>
+        </div>       
       )
   }
 }

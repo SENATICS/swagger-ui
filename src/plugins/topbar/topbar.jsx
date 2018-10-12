@@ -134,19 +134,19 @@ export default class Topbar extends React.Component {
       formOnSubmit = this.downloadUrl
 
        let rows = []
-       rows.push(<option key={1} value={'http://www.senatics.gov.py'}>{'SENATICS'}</option>)
-       rows.push(<option key={2} value={'http://www.stp.gov.py'}>{'STP'}</option>)
+       rows.push(<option key={1} value={'http://192.168.202.43:8080/frontend-identificaciones/api/swagger.json'}>{'Identificaciones'}</option>)
+       rows.push(<option key={2} value={'http://192.168.202.43:8080/mec/api/swagger.json'}>{'MEC'}</option>)
 
       control.push(
-        <label className="select-label" htmlFor="select"><span>Seleccione</span>
-          <select id="select" disabled={isLoading}>
+        <label className="select-label" htmlFor="select"><span>Productor</span>
+          <select id="select" disabled={isLoading} onChange={ this.onUrlSelect } value={rows[this.state.selectedIndex].url}>
             {rows}
           </select>
         </label>
       )
 
       //control.push(<input className="download-url-input" type="text" onChange={ this.onUrlChange } value={this.state.url} disabled={isLoading} style={inputStyle} />)
-      control.push(<Button className="download-url-button" onClick={ this.downloadUrl }>Explorar</Button>)
+      //control.push(<Button className="download-url-button" onClick={ this.downloadUrl }>Explorar</Button>)
     }
 
     return (

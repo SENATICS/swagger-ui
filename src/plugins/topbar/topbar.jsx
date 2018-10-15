@@ -134,8 +134,8 @@ export default class Topbar extends React.Component {
       formOnSubmit = this.downloadUrl
 
        let rows = []
-       rows.push(<option key={1} value={'http://192.168.202.43:8080/frontend-identificaciones/api/swagger.json'}>{'Identificaciones'}</option>)
-       rows.push(<option key={2} value={'http://192.168.202.43:8080/mec/api/swagger.json'}>{'MEC'}</option>)
+       rows.push(<option key={1} value={'/productores/frontend-identificaciones.json'}>{'Identificaciones'}</option>)
+       rows.push(<option key={2} value={'/productores/mec.json'}>{'MEC'}</option>)
 
       control.push(
         <label className="select-label" htmlFor="select"><span>Productor</span>
@@ -154,7 +154,7 @@ export default class Topbar extends React.Component {
         <div className="wrapper">
           <div className="topbar-wrapper">
             <Link>
-              <img src={ Logo } alt="Swagger UI"/>
+              <img src={ Logo } alt="SENATICs"/>
               <span></span>
             </Link>
             <form className="download-url-wrapper" onSubmit={formOnSubmit}>

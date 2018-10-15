@@ -1,0 +1,237 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0"
+  },
+  "basePath" : "/rua-csj",
+  "tags" : [ {
+    "name" : "automotor"
+  } ],
+  "paths" : {
+    "/automotor/consultarRua" : {
+      "get" : {
+        "tags" : [ "automotor" ],
+        "summary" : "Obtener datos del automotor",
+        "description" : "",
+        "operationId" : "findConsultaRUACSJ",
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "tipoCriterio",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "criterio1",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "criterio2",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Operación correcta.",
+            "schema" : {
+              "$ref" : "#/definitions/ConsultaRUASenaticsResponse"
+            }
+          },
+          "400" : {
+            "description" : "Petición incorrecta.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "401" : {
+            "description" : "Credenciales incorrectas",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "403" : {
+            "description" : "El usuario no cuenta con los permisos suficientes para acceder al recurso solicitado.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "404" : {
+            "description" : "El recurso solicitado no existe.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "500" : {
+            "description" : "El sistema no se encuentra disponible. Por favor contacte con el administrador del sistema gobiernoelectronico@senatics.gov.py",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "ConsultaRUASenaticsResponse" : {
+      "type" : "object",
+      "properties" : {
+        "consultaRUASenaticsResult" : {
+          "$ref" : "#/definitions/ResultadoVehiculosRUASenatics"
+        }
+      }
+    },
+    "RespuestaConsulta" : {
+      "type" : "object",
+      "properties" : {
+        "tipo" : {
+          "$ref" : "#/definitions/TipoRespuesta"
+        },
+        "mensajeRespuesta" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ResultadoVehiculosRUASenatics" : {
+      "type" : "object",
+      "properties" : {
+        "listado" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Vehiculo"
+          }
+        },
+        "resultado" : {
+          "$ref" : "#/definitions/RespuestaConsulta"
+        }
+      }
+    },
+    "TipoRespuesta" : {
+      "type" : "object",
+      "properties" : {
+        "value" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Titular" : {
+      "type" : "object",
+      "properties" : {
+        "idAutomotor" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "cursorTitulares" : {
+          "type" : "string"
+        },
+        "idAutomotorTitular" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "porcentajeTitularidad" : {
+          "type" : "string"
+        },
+        "nombresPropietario" : {
+          "type" : "string"
+        },
+        "apellidoPropietario" : {
+          "type" : "string"
+        },
+        "numeroDocumento" : {
+          "type" : "string"
+        },
+        "descripcionEstadoCivil" : {
+          "type" : "string"
+        },
+        "descripcionTipoDocumento" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Vehiculo" : {
+      "type" : "object",
+      "properties" : {
+        "titulares" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Titular"
+          }
+        },
+        "tipoCriterio" : {
+          "type" : "string"
+        },
+        "criterio1" : {
+          "type" : "string"
+        },
+        "criterio2" : {
+          "type" : "string"
+        },
+        "cursorAutomotores" : {
+          "type" : "string"
+        },
+        "idAutomotor" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "nroChapa" : {
+          "type" : "string"
+        },
+        "marca" : {
+          "type" : "string"
+        },
+        "modelo" : {
+          "type" : "string"
+        },
+        "certificadoNacionalizacion" : {
+          "type" : "string"
+        },
+        "annoCertificado" : {
+          "type" : "string"
+        },
+        "nroChasis" : {
+          "type" : "string"
+        },
+        "tipoInscripcion" : {
+          "type" : "string"
+        },
+        "color" : {
+          "type" : "string"
+        },
+        "pais" : {
+          "type" : "string"
+        },
+        "uso" : {
+          "type" : "string"
+        },
+        "tipoAutomotor" : {
+          "type" : "string"
+        },
+        "estado" : {
+          "type" : "string"
+        },
+        "codigoRealizacion" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "MessageResponse" : {
+      "type" : "object",
+      "properties" : {
+        "message" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

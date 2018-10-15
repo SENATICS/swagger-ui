@@ -1,0 +1,607 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0"
+  },
+  "basePath" : "/set",
+  "tags" : [ {
+    "name" : "ruc"
+  }, {
+    "name" : "rucSET"
+  }, {
+    "name" : "timbradoSET"
+  }, {
+    "name" : "maquinaRegistradoraSET"
+  }, {
+    "name" : "timbrado"
+  }, {
+    "name" : "maquinaRegistradora"
+  } ],
+  "paths" : {
+    "/ruc/obtenerDatos" : {
+      "get" : {
+        "tags" : [ "ruc" ],
+        "summary" : "Método exclusivo para sistemas de la SENATICs para obtener datos de RUC por numero de ruc y dv",
+        "description" : "",
+        "operationId" : "findConsultaRuc",
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "ruc",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "dv",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Operación correcta.",
+            "schema" : {
+              "$ref" : "#/definitions/ConsultaRucResponse"
+            }
+          },
+          "400" : {
+            "description" : "Petición incorrecta.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "401" : {
+            "description" : "Credenciales incorrectas",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "403" : {
+            "description" : "El usuario no cuenta con los permisos suficientes para acceder al recurso solicitado.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "404" : {
+            "description" : "El recurso solicitado no existe.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "500" : {
+            "description" : "El sistema no se encuentra disponible. Por favor contacte con el administrador del sistema gobiernoelectronico@senatics.gov.py",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          }
+        }
+      }
+    },
+    "/rucSET/obtenerDatos" : {
+      "get" : {
+        "tags" : [ "rucSET" ],
+        "summary" : "Obtener datos de RUC por numero de ruc, dv y apiKey",
+        "description" : "",
+        "operationId" : "findConsultaRucSet",
+        "produces" : [ "application/json", "application/xml", "application/xhtml+xml" ],
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "ruc",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "dv",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "apiKey",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Operación correcta.",
+            "schema" : {
+              "$ref" : "#/definitions/ConsultaRucResponse"
+            }
+          },
+          "400" : {
+            "description" : "Petición incorrecta.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "401" : {
+            "description" : "Credenciales incorrectas",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "403" : {
+            "description" : "El usuario no cuenta con los permisos suficientes para acceder al recurso solicitado.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "404" : {
+            "description" : "El recurso solicitado no existe.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "500" : {
+            "description" : "El sistema no se encuentra disponible. Por favor contacte con el administrador del sistema gobiernoelectronico@senatics.gov.py",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          }
+        }
+      }
+    },
+    "/timbradoSET/validarDocumento" : {
+      "get" : {
+        "tags" : [ "timbradoSET" ],
+        "summary" : "Validar el Timbrado del Documento",
+        "description" : "",
+        "operationId" : "findValidezDocumentoTimbradoSet",
+        "produces" : [ "application/json", "application/xml", "application/xhtml+xml" ],
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "ruc",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "dv",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "apiKey",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "numeroTimbrado",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "tipoDocumento",
+          "in" : "query",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "numeroDocumento",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "fechaExpedicion",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Operación correcta.",
+            "schema" : {
+              "$ref" : "#/definitions/ValidezDocumentoTimbradoResponse"
+            }
+          },
+          "400" : {
+            "description" : "Petición incorrecta.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "401" : {
+            "description" : "Credenciales incorrectas",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "403" : {
+            "description" : "El usuario no cuenta con los permisos suficientes para acceder al recurso solicitado.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "404" : {
+            "description" : "El recurso solicitado no existe.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "500" : {
+            "description" : "El sistema no se encuentra disponible. Por favor contacte con el administrador del sistema gobiernoelectronico@senatics.gov.py",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          }
+        }
+      }
+    },
+    "/maquinaRegistradoraSET/validarDocumento" : {
+      "get" : {
+        "tags" : [ "maquinaRegistradoraSET" ],
+        "summary" : "Validar máquina registradora de documentos",
+        "description" : "",
+        "operationId" : "findValidezDocumentoMaquinaRegistradoraSet",
+        "produces" : [ "application/json", "application/xml", "application/xhtml+xml" ],
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "ruc",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "dv",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "apiKey",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "numeroTimbrado",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "fechaExpedicion",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Operación correcta.",
+            "schema" : {
+              "$ref" : "#/definitions/ValidezDocumentoMaquinaRegistradoraResponse"
+            }
+          },
+          "400" : {
+            "description" : "Petición incorrecta.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "401" : {
+            "description" : "Credenciales incorrectas",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "403" : {
+            "description" : "El usuario no cuenta con los permisos suficientes para acceder al recurso solicitado.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "404" : {
+            "description" : "El recurso solicitado no existe.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "500" : {
+            "description" : "El sistema no se encuentra disponible. Por favor contacte con el administrador del sistema gobiernoelectronico@senatics.gov.py",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          }
+        }
+      }
+    },
+    "/timbrado/validarDocumento" : {
+      "get" : {
+        "tags" : [ "timbrado" ],
+        "summary" : "Validar el Timbrado del Documento sin api key exclusivo para la SENATICs.",
+        "description" : "",
+        "operationId" : "findValidezDocumentoTimbrado",
+        "produces" : [ "application/json", "application/xml", "application/xhtml+xml" ],
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "ruc",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "dv",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "numeroTimbrado",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "tipoDocumento",
+          "in" : "query",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "numeroDocumento",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "fechaExpedicion",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Operación correcta.",
+            "schema" : {
+              "$ref" : "#/definitions/ValidezDocumentoTimbradoResponse"
+            }
+          },
+          "400" : {
+            "description" : "Petición incorrecta.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "401" : {
+            "description" : "Credenciales incorrectas",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "403" : {
+            "description" : "El usuario no cuenta con los permisos suficientes para acceder al recurso solicitado.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "404" : {
+            "description" : "El recurso solicitado no existe.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "500" : {
+            "description" : "El sistema no se encuentra disponible. Por favor contacte con el administrador del sistema gobiernoelectronico@senatics.gov.py",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          }
+        }
+      }
+    },
+    "/maquinaRegistradora/validarDocumento" : {
+      "get" : {
+        "tags" : [ "maquinaRegistradora" ],
+        "summary" : "Validar máquina registradora de documentos, método de uso exclusivo para la SENATICs.",
+        "description" : "",
+        "operationId" : "findValidezDocumentoMaquinaRegistradora",
+        "produces" : [ "application/json", "application/xml", "application/xhtml+xml" ],
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "ruc",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "dv",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "numeroTimbrado",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "fechaExpedicion",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Operación correcta.",
+            "schema" : {
+              "$ref" : "#/definitions/ValidezDocumentoMaquinaRegistradoraResponse"
+            }
+          },
+          "400" : {
+            "description" : "Petición incorrecta.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "401" : {
+            "description" : "Credenciales incorrectas",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "403" : {
+            "description" : "El usuario no cuenta con los permisos suficientes para acceder al recurso solicitado.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "404" : {
+            "description" : "El recurso solicitado no existe.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "500" : {
+            "description" : "El sistema no se encuentra disponible. Por favor contacte con el administrador del sistema gobiernoelectronico@senatics.gov.py",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "ConsultaRucResponse" : {
+      "type" : "object",
+      "properties" : {
+        "return" : {
+          "$ref" : "#/definitions/InfoContribuyenteResponse"
+        }
+      }
+    },
+    "Contribuyente" : {
+      "type" : "object",
+      "properties" : {
+        "categoria" : {
+          "type" : "string"
+        },
+        "dv" : {
+          "type" : "string"
+        },
+        "estado" : {
+          "type" : "string"
+        },
+        "mesCierre" : {
+          "type" : "string"
+        },
+        "razonSocial" : {
+          "type" : "string"
+        },
+        "ruc" : {
+          "type" : "string"
+        },
+        "rucAnterior" : {
+          "type" : "string"
+        },
+        "tipoPersona" : {
+          "type" : "string"
+        },
+        "tipoSociedad" : {
+          "type" : "string"
+        },
+        "valido" : {
+          "type" : "string"
+        }
+      }
+    },
+    "InfoContribuyenteResponse" : {
+      "type" : "object",
+      "properties" : {
+        "codigo" : {
+          "type" : "string"
+        },
+        "estado" : {
+          "type" : "string"
+        },
+        "mensaje" : {
+          "type" : "string"
+        },
+        "contribuyente" : {
+          "$ref" : "#/definitions/Contribuyente"
+        }
+      }
+    },
+    "MessageResponse" : {
+      "type" : "object",
+      "properties" : {
+        "message" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ValidezDocumentoResponse" : {
+      "type" : "object",
+      "properties" : {
+        "codigo" : {
+          "type" : "string"
+        },
+        "estado" : {
+          "type" : "string"
+        },
+        "mensaje" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ValidezDocumentoTimbradoResponse" : {
+      "type" : "object",
+      "properties" : {
+        "return" : {
+          "$ref" : "#/definitions/ValidezDocumentoResponse"
+        }
+      }
+    },
+    "ValidezDocumentoMaquinaRegistradoraResponse" : {
+      "type" : "object",
+      "properties" : {
+        "return" : {
+          "$ref" : "#/definitions/ValidezDocumentoResponse"
+        }
+      }
+    }
+  }
+}

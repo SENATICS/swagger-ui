@@ -1,0 +1,775 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0"
+  },
+  "basePath" : "/dgrp-csj",
+  "tags" : [ {
+    "name" : "Inmuebles"
+  }, {
+    "name" : "Personas Fiscas"
+  }, {
+    "name" : "Personas Juridicas"
+  } ],
+  "paths" : {
+    "/inmuebles/obtenerInmueblesPorNombre" : {
+      "get" : {
+        "tags" : [ "Inmuebles" ],
+        "summary" : "Obtener lista de inmuebles por nombre.",
+        "description" : "",
+        "operationId" : "findBusquedaPorNombre",
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "operacion",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "audCodusu",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "audNombreterminal",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "audIp",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "audDisptipo",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "audDispSO",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "audDispbrowser",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "audURLmoduloutiliz",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "audCaratExpCaso",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "nombre",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "filaini",
+          "in" : "query",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "filacant",
+          "in" : "query",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Operación correcta.",
+            "schema" : {
+              "$ref" : "#/definitions/BusquedaPorNombreResponse"
+            }
+          },
+          "400" : {
+            "description" : "Petición incorrecta.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "401" : {
+            "description" : "Credenciales incorrectas",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "403" : {
+            "description" : "El usuario no cuenta con los permisos suficientes para acceder al recurso solicitado.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "404" : {
+            "description" : "El recurso solicitado no existe.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "500" : {
+            "description" : "El sistema no se encuentra disponible. Por favor contacte con el administrador del sistema gobiernoelectronico@senatics.gov.py",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "503" : {
+            "description" : "El sistema no se encuentra disponible. Por favor contacte con el administrador del sistema gobiernoelectronico@senatics.gov.py",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          }
+        }
+      }
+    },
+    "/inmuebles/obtenerInmueblesPorRUCCI" : {
+      "get" : {
+        "tags" : [ "Inmuebles" ],
+        "summary" : "Obtener lista de inmuebles por RUC y/o Cédula de Identidad",
+        "description" : "",
+        "operationId" : "findBusquedaPorRucCi",
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "operacion",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "audCodusu",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "audNombreterminal",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "audIp",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "audDisptipo",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "audDispSO",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "audDispbrowser",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "audURLmoduloutiliz",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "audCaratExpCaso",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "cedulaRuc",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "filaini",
+          "in" : "query",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "filacant",
+          "in" : "query",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Operación correcta.",
+            "schema" : {
+              "$ref" : "#/definitions/BusquedaPorRucCiResponse"
+            }
+          },
+          "400" : {
+            "description" : "Petición incorrecta.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "401" : {
+            "description" : "Credenciales incorrectas",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "403" : {
+            "description" : "El usuario no cuenta con los permisos suficientes para acceder al recurso solicitado.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "404" : {
+            "description" : "El recurso solicitado no existe.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "500" : {
+            "description" : "El sistema no se encuentra disponible. Por favor contacte con el administrador del sistema gobiernoelectronico@senatics.gov.py",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          }
+        }
+      }
+    },
+    "/personaFisica/obtenerLista" : {
+      "get" : {
+        "tags" : [ "Personas Fiscas" ],
+        "summary" : "Obtener lista de personas físicas que poseen inmuebles a partir de un rango de fechas.",
+        "description" : "",
+        "operationId" : "findListaPersonasFisicas",
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "operacion",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "audCodusu",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "audNombreterminal",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "audIp",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "audDisptipo",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "audDispSO",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "audDispbrowser",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "audURLmoduloutiliz",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "fechaDesde",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "fechaHasta",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "audCaratExpCaso",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "filaini",
+          "in" : "query",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "filacant",
+          "in" : "query",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Operación correcta.",
+            "schema" : {
+              "$ref" : "#/definitions/ObtenerListaPersonasFisicasResponse"
+            }
+          },
+          "400" : {
+            "description" : "Petición incorrecta.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "401" : {
+            "description" : "Credenciales incorrectas",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "403" : {
+            "description" : "El usuario no cuenta con los permisos suficientes para acceder al recurso solicitado.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "404" : {
+            "description" : "El recurso solicitado no existe.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "500" : {
+            "description" : "El sistema no se encuentra disponible. Por favor contacte con el administrador del sistema gobiernoelectronico@senatics.gov.py",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          }
+        }
+      }
+    },
+    "/personaJuridica/obtenerLista" : {
+      "get" : {
+        "tags" : [ "Personas Juridicas" ],
+        "summary" : "Obtener lista de personas jurídicas que poseen inmuebles a partir de un rango de fechas.",
+        "description" : "",
+        "operationId" : "findListaPersonasJuridicas",
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "operacion",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "audCodusu",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "audNombreterminal",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "audIp",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "audDisptipo",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "audDispSO",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "audDispbrowser",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "audURLmoduloutiliz",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "fechaDesde",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "fechaHasta",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "audCaratExpCaso",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "filaini",
+          "in" : "query",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "filacant",
+          "in" : "query",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Operación correcta.",
+            "schema" : {
+              "$ref" : "#/definitions/ObtenerListaPersonasJuridicas"
+            }
+          },
+          "400" : {
+            "description" : "Petición incorrecta.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "401" : {
+            "description" : "Credenciales incorrectas",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "403" : {
+            "description" : "El usuario no cuenta con los permisos suficientes para acceder al recurso solicitado.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "404" : {
+            "description" : "El recurso solicitado no existe.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "500" : {
+            "description" : "El sistema no se encuentra disponible. Por favor contacte con el administrador del sistema gobiernoelectronico@senatics.gov.py",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "BusquedaDTO" : {
+      "type" : "object",
+      "properties" : {
+        "error" : {
+          "type" : "boolean"
+        },
+        "mensajeError" : {
+          "type" : "string"
+        },
+        "senNombreCon" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/SenNombreCon"
+          }
+        }
+      }
+    },
+    "BusquedaPorNombreResponse" : {
+      "type" : "object",
+      "properties" : {
+        "return" : {
+          "$ref" : "#/definitions/BusquedaDTO"
+        }
+      }
+    },
+    "SenNombreCon" : {
+      "type" : "object",
+      "properties" : {
+        "ctacte" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "CTA_CTE"
+          }
+        },
+        "descestadotit" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "DESC_ESTADO_TIT"
+          }
+        },
+        "distrito" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "DISTRITO"
+          }
+        },
+        "iddistrito" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "ID_DISTRITO"
+          }
+        },
+        "metrosadicionalessl" : {
+          "type" : "number",
+          "xml" : {
+            "name" : "METROS_ADICIONALES_SL"
+          }
+        },
+        "nacionalidad" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "NACIONALIDAD"
+          }
+        },
+        "nombreapellidorazonsocial" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "NOMBREAPELLIDO_RAZONSOCIAL"
+          }
+        },
+        "nrodocumento" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "NRO_DOCUMENTO"
+          }
+        },
+        "nrofinca" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "NRO_FINCA"
+          }
+        },
+        "nromatricula" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "NRO_MATRICULA"
+          }
+        },
+        "nropadron" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "NRO_PADRON"
+          }
+        },
+        "repetido" : {
+          "type" : "integer",
+          "format" : "int32",
+          "xml" : {
+            "name" : "REPETIDO"
+          }
+        },
+        "superficielegal" : {
+          "type" : "number",
+          "xml" : {
+            "name" : "SUPERFICIE_LEGAL"
+          }
+        },
+        "tipoparcela" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "TIPO_PARCELA"
+          }
+        },
+        "tipopersona" : {
+          "type" : "integer",
+          "format" : "int32",
+          "xml" : {
+            "name" : "TIPO_PERSONA"
+          }
+        },
+        "titestado" : {
+          "type" : "integer",
+          "format" : "int32",
+          "xml" : {
+            "name" : "TIT_ESTADO"
+          }
+        }
+      }
+    },
+    "MessageResponse" : {
+      "type" : "object",
+      "properties" : {
+        "message" : {
+          "type" : "string"
+        }
+      }
+    },
+    "BusquedaPorRucCiResponse" : {
+      "type" : "object",
+      "properties" : {
+        "return" : {
+          "$ref" : "#/definitions/BusquedaDTO"
+        }
+      }
+    },
+    "ObtenerListaPersonasFisicasResponse" : {
+      "type" : "object",
+      "properties" : {
+        "return" : {
+          "$ref" : "#/definitions/PersonasFisicasDTO"
+        }
+      }
+    },
+    "PersonasFisicas" : {
+      "type" : "object",
+      "properties" : {
+        "apellido" : {
+          "type" : "string"
+        },
+        "distrito" : {
+          "type" : "string"
+        },
+        "fchaEntrada" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "fcha_entrada"
+          }
+        },
+        "fchaEscritura" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "fcha_escritura"
+          }
+        },
+        "finca" : {
+          "type" : "string"
+        },
+        "idDist" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "id_dist"
+          }
+        },
+        "idNacion" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "id_nacion"
+          }
+        },
+        "matricula" : {
+          "type" : "string"
+        },
+        "moneda" : {
+          "type" : "string"
+        },
+        "monto" : {
+          "type" : "number"
+        },
+        "nacionalidad" : {
+          "type" : "string"
+        },
+        "nombre" : {
+          "type" : "string"
+        },
+        "nroDoc" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "nro_doc"
+          }
+        },
+        "tipoDoc" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "tipo_doc"
+          }
+        },
+        "tipoPersona" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "tipo_persona"
+          }
+        },
+        "titularEstado" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "titular_estado"
+          }
+        },
+        "zona" : {
+          "type" : "string"
+        }
+      }
+    },
+    "PersonasFisicasDTO" : {
+      "type" : "object",
+      "properties" : {
+        "error" : {
+          "type" : "boolean"
+        },
+        "mensajeError" : {
+          "type" : "string"
+        },
+        "personasFisicas" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/PersonasFisicas"
+          }
+        }
+      }
+    },
+    "ObtenerListaPersonasJuridicas" : {
+      "type" : "object",
+      "properties" : {
+        "fechaDesde" : {
+          "type" : "string"
+        },
+        "fechaHasta" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

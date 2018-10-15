@@ -1,0 +1,202 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0"
+  },
+  "basePath" : "/dncp",
+  "tags" : [ {
+    "name" : "llamados"
+  } ],
+  "paths" : {
+    "/llamados/convocatoriasPendientes" : {
+      "get" : {
+        "tags" : [ "llamados" ],
+        "summary" : "Obtener convacatorias pendientes de apertura.",
+        "description" : "",
+        "operationId" : "convocatoriasPendientes",
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "codigo",
+          "in" : "query",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "name" : "tipoCodigo",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "etiquetas",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Operación correcta.",
+            "schema" : {
+              "$ref" : "#/definitions/ConvocatoriasPendientesResponse"
+            }
+          },
+          "400" : {
+            "description" : "Petición incorrecta.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "401" : {
+            "description" : "Credenciales incorrectas",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "403" : {
+            "description" : "El usuario no cuenta con los permisos suficientes para acceder al recurso solicitado.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "404" : {
+            "description" : "El recurso solicitado no existe.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "500" : {
+            "description" : "El sistema no se encuentra disponible. Por favor contacte con el administrador del sistema gobiernoelectronico@senatics.gov.py",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "ConvocatoriasPendientes" : {
+      "type" : "object",
+      "properties" : {
+        "codigo" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "tipoCodigo" : {
+          "$ref" : "#/definitions/JAXBElementString"
+        },
+        "etiquetas" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        }
+      },
+      "xml" : {
+        "name" : "convocatoriasPendientes"
+      }
+    },
+    "ConvocatoriasPendientesResponse" : {
+      "type" : "object",
+      "properties" : {
+        "return" : {
+          "$ref" : "#/definitions/JAXBElementConvocatoriasPendientes"
+        }
+      },
+      "xml" : {
+        "name" : "convocatoriasPendientesResponse"
+      }
+    },
+    "JAXBElement" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "$ref" : "#/definitions/QName"
+        },
+        "value" : {
+          "type" : "object"
+        },
+        "nil" : {
+          "type" : "boolean"
+        },
+        "typeSubstituted" : {
+          "type" : "boolean"
+        },
+        "globalScope" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "JAXBElementConvocatoriasPendientes" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "$ref" : "#/definitions/QName"
+        },
+        "value" : {
+          "$ref" : "#/definitions/ConvocatoriasPendientes"
+        },
+        "nil" : {
+          "type" : "boolean"
+        },
+        "typeSubstituted" : {
+          "type" : "boolean"
+        },
+        "globalScope" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "JAXBElementString" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "$ref" : "#/definitions/QName"
+        },
+        "value" : {
+          "type" : "string"
+        },
+        "nil" : {
+          "type" : "boolean"
+        },
+        "typeSubstituted" : {
+          "type" : "boolean"
+        },
+        "globalScope" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "QName" : {
+      "type" : "object",
+      "properties" : {
+        "namespaceURI" : {
+          "type" : "string"
+        },
+        "localPart" : {
+          "type" : "string"
+        },
+        "prefix" : {
+          "type" : "string"
+        }
+      }
+    },
+    "MessageResponse" : {
+      "type" : "object",
+      "properties" : {
+        "message" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0"
+  },
+  "basePath" : "/mec",
+  "tags" : [ {
+    "name" : "gradoAcademico"
+  } ],
+  "paths" : {
+    "/gradoAcademico/obtenerGradoAcademico/{documentoPersona}" : {
+      "get" : {
+        "tags" : [ "gradoAcademico" ],
+        "summary" : "Obtener grado académico del ciudadano",
+        "description" : "",
+        "operationId" : "findGradoAcademico",
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "documentoPersona",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Operación correcta.",
+            "schema" : {
+              "$ref" : "#/definitions/RetornarDetalleAcademicoResponse"
+            }
+          },
+          "400" : {
+            "description" : "Petición incorrecta.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "401" : {
+            "description" : "Credenciales incorrectas",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "403" : {
+            "description" : "El usuario no cuenta con los permisos suficientes para acceder al recurso solicitado.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "404" : {
+            "description" : "El recurso solicitado no existe.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "500" : {
+            "description" : "El sistema no se encuentra disponible. Por favor contacte con el administrador del sistema gobiernoelectronico@senatics.gov.py",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "RetornarDetalleAcademicoResponse" : {
+      "type" : "object",
+      "properties" : {
+        "value" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Value"
+          }
+        }
+      }
+    },
+    "Value" : {
+      "type" : "object",
+      "properties" : {
+        "nombre" : {
+          "type" : "string"
+        },
+        "apellido" : {
+          "type" : "string"
+        },
+        "fecha_nacimiento" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "institucion" : {
+          "type" : "string"
+        },
+        "nivel_educativo" : {
+          "type" : "string"
+        },
+        "grado_academico" : {
+          "type" : "string"
+        },
+        "titulo_academico" : {
+          "type" : "string"
+        },
+        "especialidad_academica" : {
+          "type" : "string"
+        },
+        "numero_resolucion" : {
+          "type" : "string"
+        },
+        "fecha_resolucion" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "fecha_informacion" : {
+          "type" : "string",
+          "format" : "date-time"
+        }
+      }
+    },
+    "MessageResponse" : {
+      "type" : "object",
+      "properties" : {
+        "message" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

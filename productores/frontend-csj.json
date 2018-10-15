@@ -1,0 +1,398 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0"
+  },
+  "basePath" : "/frontend-csj",
+  "tags" : [ {
+    "name" : "csj"
+  } ],
+  "paths" : {
+    "/csj/findAntecedentesPenales" : {
+      "get" : {
+        "tags" : [ "csj" ],
+        "summary" : "Realizar consultas de Antecedentes Penales.",
+        "description" : "",
+        "operationId" : "findAntecedentesPenalesSeguridad",
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "nroDocumento",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "nombres",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "apellidos",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "nroDocumentoOtro",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "tipoDocumentoOtro",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "fechaNacimiento",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Operación correcta.",
+            "schema" : {
+              "$ref" : "#/definitions/ConsultaAdministrativaResponse"
+            }
+          },
+          "400" : {
+            "description" : "Petición incorrecta.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "401" : {
+            "description" : "Credenciales incorrectas",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "403" : {
+            "description" : "El usuario no cuenta con los permisos suficientes para acceder al recurso solicitado.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "404" : {
+            "description" : "El recurso solicitado no existe.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "500" : {
+            "description" : "El sistema no se encuentra disponible. Por favor contacte con el administrador del sistema gobiernoelectronico@senatics.gov.py",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          }
+        }
+      }
+    },
+    "/csj/findAntecedentesPenalesAdministrativas" : {
+      "get" : {
+        "tags" : [ "csj" ],
+        "summary" : "Realizar consultas Administrativas.",
+        "description" : "",
+        "operationId" : "findAntecedentesPenalesAdministrativas",
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "nroDocumento",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "nombres",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "apellidos",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "nroDocumentoOtro",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "tipoDocumentoOtro",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "fechaNacimiento",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Operación correcta.",
+            "schema" : {
+              "$ref" : "#/definitions/ConsultaAdministrativaResponse"
+            }
+          },
+          "400" : {
+            "description" : "Petición incorrecta.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "401" : {
+            "description" : "Credenciales incorrectas",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "403" : {
+            "description" : "El usuario no cuenta con los permisos suficientes para acceder al recurso solicitado.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "404" : {
+            "description" : "El recurso solicitado no existe.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "500" : {
+            "description" : "El sistema no se encuentra disponible. Por favor contacte con el administrador del sistema gobiernoelectronico@senatics.gov.py",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          }
+        }
+      }
+    },
+    "/csj/findAntecedentesPenalesAdministrativasByCedula/{nrodocumento}" : {
+      "get" : {
+        "tags" : [ "csj" ],
+        "summary" : "Realizar consultas Administrativas.",
+        "description" : "",
+        "operationId" : "findAntecedentesPenalesByCedula",
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "nrodocumento",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Operación correcta.",
+            "schema" : {
+              "$ref" : "#/definitions/ConsultaAdministrativaResponse"
+            }
+          },
+          "400" : {
+            "description" : "Petición incorrecta.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "401" : {
+            "description" : "Credenciales incorrectas",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "403" : {
+            "description" : "El usuario no cuenta con los permisos suficientes para acceder al recurso solicitado.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "404" : {
+            "description" : "El recurso solicitado no existe.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "500" : {
+            "description" : "El sistema no se encuentra disponible. Por favor contacte con el administrador del sistema gobiernoelectronico@senatics.gov.py",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "AntecedentePenal" : {
+      "type" : "object",
+      "properties" : {
+        "codigoAntecedentePenal" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "fechaHoraUltimaActualizacion" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "circunscripcionesConsultadas" : {
+          "type" : "string"
+        },
+        "identificadorInformeUsuario" : {
+          "type" : "string"
+        },
+        "nombres" : {
+          "type" : "string"
+        },
+        "apellidos" : {
+          "type" : "string"
+        },
+        "nombreCompleto" : {
+          "type" : "string"
+        },
+        "caratulaCausa" : {
+          "type" : "string"
+        },
+        "hechosPunibles" : {
+          "type" : "string"
+        },
+        "despachoJudicialCaso" : {
+          "type" : "string"
+        },
+        "nroExpediente" : {
+          "type" : "string"
+        },
+        "circunscripcion" : {
+          "type" : "string"
+        },
+        "fechaHecho" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "lugarHecho" : {
+          "type" : "string"
+        },
+        "descripcionTipoDocumento" : {
+          "type" : "string"
+        },
+        "documentoNro" : {
+          "type" : "string"
+        },
+        "nacionalidad" : {
+          "type" : "string"
+        },
+        "descripcionTipoDocumentoOtro" : {
+          "type" : "string"
+        },
+        "documentoNroOtro" : {
+          "type" : "string"
+        },
+        "fechaNacimiento" : {
+          "type" : "object"
+        },
+        "descripcionEstadoCivil" : {
+          "type" : "string"
+        },
+        "descripcionOcupacion" : {
+          "type" : "string"
+        },
+        "fechaActuacion" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "descripcionTipoActuacion" : {
+          "type" : "string"
+        },
+        "descripcionActuacionParte" : {
+          "type" : "string"
+        },
+        "descripcionEstadoProcesal" : {
+          "type" : "string"
+        },
+        "observaciones" : {
+          "type" : "string"
+        },
+        "estadoConfirmacion" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "descripcionEstadoConfirmacion" : {
+          "type" : "string"
+        },
+        "codigoCaso" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "ConsultaAdministrativaResponse" : {
+      "type" : "object",
+      "properties" : {
+        "consultaAdministrativaResult" : {
+          "$ref" : "#/definitions/ResultadoAntecedentesPenales"
+        }
+      }
+    },
+    "RespuestaConsulta" : {
+      "type" : "object",
+      "properties" : {
+        "tipo" : {
+          "$ref" : "#/definitions/TipoRespuesta"
+        },
+        "mensajeRespuesta" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ResultadoAntecedentesPenales" : {
+      "type" : "object",
+      "properties" : {
+        "listado" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/AntecedentePenal"
+          }
+        },
+        "resultado" : {
+          "$ref" : "#/definitions/RespuestaConsulta"
+        }
+      }
+    },
+    "TipoRespuesta" : {
+      "type" : "object"
+    },
+    "MessageResponse" : {
+      "type" : "object",
+      "properties" : {
+        "message" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

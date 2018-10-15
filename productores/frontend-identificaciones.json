@@ -1,0 +1,340 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0"
+  },
+  "basePath" : "/frontend-identificaciones",
+  "tags" : [ {
+    "name" : "persona"
+  } ],
+  "paths" : {
+    "/persona/obtenerPersonaPorCedula/{nroCedula}" : {
+      "get" : {
+        "tags" : [ "persona" ],
+        "summary" : "Obtener persona por numero de cédula.",
+        "description" : "",
+        "operationId" : "findPersonaByCedula",
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "nroCedula",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Operación correcta.",
+            "schema" : {
+              "$ref" : "#/definitions/ObtenerPersonaPorNroCedulaResponse"
+            }
+          },
+          "400" : {
+            "description" : "Petición incorrecta.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "401" : {
+            "description" : "Credenciales incorrectas",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "403" : {
+            "description" : "El usuario no cuenta con los permisos suficientes para acceder al recurso solicitado.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "404" : {
+            "description" : "El recurso solicitado no existe.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "500" : {
+            "description" : "El sistema no se encuentra disponible. Por favor contacte con el administrador del sistema gobiernoelectronico@senatics.gov.py",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          }
+        }
+      }
+    },
+    "/persona/obtenerPersonaPorNombreApellidoFechaNac/{nombres}/{apellidos}/{fechaNacimiento}/{nroPagina}" : {
+      "get" : {
+        "tags" : [ "persona" ],
+        "summary" : "Obtener persona por nombre, apellido y fecha de nacimiento.",
+        "description" : "",
+        "operationId" : "findPersonaByNombreApellidoFechaNac",
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "nombres",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "apellidos",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "fechaNacimiento",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "nroPagina",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Operación correcta.",
+            "schema" : {
+              "$ref" : "#/definitions/ObtenerPersonaPorNombreApellidoFechaNacResponse"
+            }
+          },
+          "400" : {
+            "description" : "Petición incorrecta.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "401" : {
+            "description" : "Credenciales incorrectas",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "403" : {
+            "description" : "El usuario no cuenta con los permisos suficientes para acceder al recurso solicitado.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "404" : {
+            "description" : "El recurso solicitado no existe.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "500" : {
+            "description" : "El sistema no se encuentra disponible. Por favor contacte con el administrador del sistema gobiernoelectronico@senatics.gov.py",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          }
+        }
+      }
+    },
+    "/persona/obtenerPersonaPorNombreApellido/{nombres}/{apellidos}/{nroPagina}" : {
+      "get" : {
+        "tags" : [ "persona" ],
+        "summary" : "Obtener persona por nombre y apellido.",
+        "description" : "",
+        "operationId" : "findPersonaByNombreApellido",
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "nombres",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "apellidos",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "nroPagina",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Operación correcta.",
+            "schema" : {
+              "$ref" : "#/definitions/ObtenerPersonaPorNombreApellidoResponse"
+            }
+          },
+          "400" : {
+            "description" : "Petición incorrecta.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "401" : {
+            "description" : "Credenciales incorrectas",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "403" : {
+            "description" : "El usuario no cuenta con los permisos suficientes para acceder al recurso solicitado.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "404" : {
+            "description" : "El recurso solicitado no existe.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "500" : {
+            "description" : "El sistema no se encuentra disponible. Por favor contacte con el administrador del sistema gobiernoelectronico@senatics.gov.py",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "ObtenerPersonaPorNroCedulaResponse" : {
+      "type" : "object",
+      "properties" : {
+        "return" : {
+          "$ref" : "#/definitions/Persona"
+        }
+      }
+    },
+    "Persona" : {
+      "type" : "object",
+      "properties" : {
+        "apellido" : {
+          "type" : "string"
+        },
+        "cedula" : {
+          "type" : "string"
+        },
+        "error" : {
+          "type" : "string"
+        },
+        "estadoCivil" : {
+          "type" : "string"
+        },
+        "fechImpresion" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "fechNacim" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "icActa" : {
+          "type" : "string"
+        },
+        "icFeccar" : {
+          "type" : "string"
+        },
+        "icFolio" : {
+          "type" : "string"
+        },
+        "icOfnac" : {
+          "type" : "string"
+        },
+        "icTomo" : {
+          "type" : "string"
+        },
+        "nacionalidadBean" : {
+          "type" : "string"
+        },
+        "nombres" : {
+          "type" : "string"
+        },
+        "nroPaginaActual" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "nroPaginaTotal" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "profesionBean" : {
+          "type" : "string"
+        },
+        "sexo" : {
+          "type" : "string"
+        }
+      }
+    },
+    "MessageResponse" : {
+      "type" : "object",
+      "properties" : {
+        "message" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ListaPersona" : {
+      "type" : "object",
+      "properties" : {
+        "cantidadPaginas" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "error" : {
+          "type" : "string"
+        },
+        "personas" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Persona"
+          }
+        }
+      }
+    },
+    "ObtenerPersonaPorNombreApellidoFechaNacResponse" : {
+      "type" : "object",
+      "properties" : {
+        "return" : {
+          "$ref" : "#/definitions/ListaPersona"
+        }
+      }
+    },
+    "ObtenerPersonaPorNombreApellidoResponse" : {
+      "type" : "object",
+      "properties" : {
+        "return" : {
+          "$ref" : "#/definitions/ListaPersona"
+        }
+      }
+    }
+  }
+}

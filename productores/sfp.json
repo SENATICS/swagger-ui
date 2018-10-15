@@ -1,0 +1,397 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0"
+  },
+  "basePath" : "/sfp",
+  "tags" : [ {
+    "name" : "concurso publico"
+  }, {
+    "name" : "funcionario"
+  } ],
+  "paths" : {
+    "/concursoPublico/obtenerDatosPorInstitucionID/{institucionId}" : {
+      "get" : {
+        "tags" : [ "concurso publico" ],
+        "summary" : "Obtener datos de concursos público por ID de la Institución.",
+        "description" : "",
+        "operationId" : "findConcursosByInstitucionId",
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "institucionId",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Operación correcta.",
+            "schema" : {
+              "$ref" : "#/definitions/GetConcursosPublicadosByIdResponse"
+            }
+          },
+          "400" : {
+            "description" : "Petición incorrecta.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "401" : {
+            "description" : "Credenciales incorrectas",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "403" : {
+            "description" : "El usuario no cuenta con los permisos suficientes para acceder al recurso solicitado.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "404" : {
+            "description" : "El recurso solicitado no existe.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "500" : {
+            "description" : "El sistema no se encuentra disponible. Por favor contacte con el administrador del sistema gobiernoelectronico@senatics.gov.py",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          }
+        }
+      }
+    },
+    "/concursoPublico/obtenerDeSiccaPorInstitucionID/{institucionId}" : {
+      "get" : {
+        "tags" : [ "concurso publico" ],
+        "summary" : "Obtener datos de concursos público del SICCA por ID de la Institución.",
+        "description" : "",
+        "operationId" : "findConcursosSiccaByInstitucionId",
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "institucionId",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Operación correcta.",
+            "schema" : {
+              "$ref" : "#/definitions/GetConcursosPublicadosByIdResponse"
+            }
+          },
+          "400" : {
+            "description" : "Petición incorrecta.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "401" : {
+            "description" : "Credenciales incorrectas",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "403" : {
+            "description" : "El usuario no cuenta con los permisos suficientes para acceder al recurso solicitado.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "404" : {
+            "description" : "El recurso solicitado no existe.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "500" : {
+            "description" : "El sistema no se encuentra disponible. Por favor contacte con el administrador del sistema gobiernoelectronico@senatics.gov.py",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          }
+        }
+      }
+    },
+    "/funcionario/obtenerDatos/{numeroCI}" : {
+      "get" : {
+        "tags" : [ "funcionario" ],
+        "summary" : "Obtener datos de funcionario público por número de cédula.",
+        "description" : "",
+        "operationId" : "findConstanciaFuncionario",
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "numeroCI",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Operación correcta.",
+            "schema" : {
+              "$ref" : "#/definitions/GetDatosFuncionariosResponse"
+            }
+          },
+          "400" : {
+            "description" : "Petición incorrecta.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "401" : {
+            "description" : "Credenciales incorrectas",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "403" : {
+            "description" : "El usuario no cuenta con los permisos suficientes para acceder al recurso solicitado.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "404" : {
+            "description" : "El recurso solicitado no existe.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "500" : {
+            "description" : "El sistema no se encuentra disponible. Por favor contacte con el administrador del sistema gobiernoelectronico@senatics.gov.py",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "ConcursosDTO" : {
+      "type" : "object",
+      "properties" : {
+        "cantidad" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "cargo" : {
+          "type" : "string"
+        },
+        "codigooee" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "entidad" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "idoee" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "nivel" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "oee" : {
+          "type" : "string"
+        },
+        "perfil" : {
+          "type" : "string"
+        },
+        "tipoConcurso" : {
+          "type" : "string"
+        },
+        "valor" : {
+          "type" : "string"
+        }
+      }
+    },
+    "GetConcursosPublicadosByIdResponse" : {
+      "type" : "object",
+      "properties" : {
+        "return" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/ConcursosDTO"
+          }
+        }
+      }
+    },
+    "MessageResponse" : {
+      "type" : "object",
+      "properties" : {
+        "message" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ConstanciaDTO" : {
+      "type" : "object",
+      "properties" : {
+        "codigoStatus" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "descripcionStatus" : {
+          "type" : "string"
+        },
+        "fecha" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "mensajeError" : {
+          "type" : "string"
+        },
+        "nomina" : {
+          "type" : "string"
+        },
+        "sinarh" : {
+          "type" : "string"
+        },
+        "sistemaNomina" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/NominaDTO"
+          }
+        },
+        "sistemaSinarh" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/SinarhDTO"
+          }
+        }
+      }
+    },
+    "GetDatosFuncionariosResponse" : {
+      "type" : "object",
+      "properties" : {
+        "return" : {
+          "$ref" : "#/definitions/ConstanciaDTO"
+        }
+      }
+    },
+    "NominaDTO" : {
+      "type" : "object",
+      "properties" : {
+        "anio" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "cedula" : {
+          "type" : "string"
+        },
+        "descripcionOEE" : {
+          "type" : "string"
+        },
+        "estado" : {
+          "type" : "string"
+        },
+        "funcion" : {
+          "type" : "string"
+        },
+        "mes" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "movimiento" : {
+          "type" : "string"
+        },
+        "nombreCompleto" : {
+          "type" : "string"
+        },
+        "objGasto" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "SinarhDTO" : {
+      "type" : "object",
+      "properties" : {
+        "anioSinarh" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "cedula" : {
+          "type" : "string"
+        },
+        "estado" : {
+          "type" : "string"
+        },
+        "excepcionsfp" : {
+          "type" : "string"
+        },
+        "fechaFin" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "fechaInicio" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "funcionSinarh" : {
+          "type" : "string"
+        },
+        "funcionario" : {
+          "type" : "string"
+        },
+        "motivoBaja" : {
+          "type" : "string"
+        },
+        "nombreEntidad" : {
+          "type" : "string"
+        },
+        "objGasto" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "tipo" : {
+          "type" : "string"
+        },
+        "ultimoMesCobro" : {
+          "type" : "string"
+        },
+        "unidadResponsable" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

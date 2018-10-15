@@ -1,0 +1,564 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0"
+  },
+  "basePath" : "/hacienda",
+  "tags" : [ {
+    "name" : "hacienda"
+  } ],
+  "paths" : {
+    "/hacienda/obtenerEntidades" : {
+      "get" : {
+        "tags" : [ "hacienda" ],
+        "summary" : "Obtener lista de entidades.",
+        "description" : "",
+        "operationId" : "getEntidades",
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Operación correcta.",
+            "schema" : {
+              "$ref" : "#/definitions/GetEntidadesResponse"
+            }
+          },
+          "400" : {
+            "description" : "Petición incorrecta.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "401" : {
+            "description" : "Credenciales incorrectas",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "403" : {
+            "description" : "El usuario no cuenta con los permisos suficientes para acceder al recurso solicitado.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "404" : {
+            "description" : "El recurso solicitado no existe.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "500" : {
+            "description" : "El sistema no se encuentra disponible. Por favor contacte con el administrador del sistema gobiernoelectronico@senatics.gov.py",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          }
+        }
+      }
+    },
+    "/hacienda/sinarh/obtenerListaPorEntidad" : {
+      "get" : {
+        "tags" : [ "hacienda" ],
+        "summary" : "Obtener lista de funcionarios por entidad y nivel.",
+        "description" : "",
+        "operationId" : "getListaPorEntidad",
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "nivel",
+          "in" : "query",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "entidad",
+          "in" : "query",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Operación correcta.",
+            "schema" : {
+              "$ref" : "#/definitions/GetListaPorEntidadResponse"
+            }
+          },
+          "400" : {
+            "description" : "Petición incorrecta.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "401" : {
+            "description" : "Credenciales incorrectas",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "403" : {
+            "description" : "El usuario no cuenta con los permisos suficientes para acceder al recurso solicitado.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "404" : {
+            "description" : "El recurso solicitado no existe.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "500" : {
+            "description" : "El sistema no se encuentra disponible. Por favor contacte con el administrador del sistema gobiernoelectronico@senatics.gov.py",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          }
+        }
+      }
+    },
+    "/hacienda/sinarh/obtenerListaPorEntidadPaginado" : {
+      "get" : {
+        "tags" : [ "hacienda" ],
+        "summary" : "Obtener lista de funcionarios por entidad y nivel por pagina, esta función es solo para los datos del MEC.",
+        "description" : "",
+        "operationId" : "getListaPorEntidadPaginado",
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "nivel",
+          "in" : "query",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "entidad",
+          "in" : "query",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "pagina",
+          "in" : "query",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Operación correcta.",
+            "schema" : {
+              "$ref" : "#/definitions/GetListaPorEntidadPaginadoResponse"
+            }
+          },
+          "400" : {
+            "description" : "Petición incorrecta.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "401" : {
+            "description" : "Credenciales incorrectas",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "403" : {
+            "description" : "El usuario no cuenta con los permisos suficientes para acceder al recurso solicitado.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "404" : {
+            "description" : "El recurso solicitado no existe.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "500" : {
+            "description" : "El sistema no se encuentra disponible. Por favor contacte con el administrador del sistema gobiernoelectronico@senatics.gov.py",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          }
+        }
+      }
+    },
+    "/hacienda/obtenerPresupuestoPorEntidad" : {
+      "get" : {
+        "tags" : [ "hacienda" ],
+        "summary" : "Obtener presupuesto general de la nación.",
+        "description" : "",
+        "operationId" : "getPresupuestoPorEntidad",
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "anio",
+          "in" : "query",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "nivel",
+          "in" : "query",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "entidad",
+          "in" : "query",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Operación correcta.",
+            "schema" : {
+              "$ref" : "#/definitions/GetPresupuestoPorEntidadResponse"
+            }
+          },
+          "400" : {
+            "description" : "Petición incorrecta.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "401" : {
+            "description" : "Credenciales incorrectas",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "403" : {
+            "description" : "El usuario no cuenta con los permisos suficientes para acceder al recurso solicitado.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "404" : {
+            "description" : "El recurso solicitado no existe.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "500" : {
+            "description" : "El sistema no se encuentra disponible. Por favor contacte con el administrador del sistema gobiernoelectronico@senatics.gov.py",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "Entidad" : {
+      "type" : "object",
+      "properties" : {
+        "filaId" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "nivel" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "entidad" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "nombreEntidad" : {
+          "type" : "string"
+        }
+      }
+    },
+    "EntidadArray" : {
+      "type" : "object",
+      "properties" : {
+        "item" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Entidad"
+          }
+        }
+      }
+    },
+    "GetEntidadesResponse" : {
+      "type" : "object",
+      "properties" : {
+        "return" : {
+          "$ref" : "#/definitions/EntidadArray"
+        }
+      }
+    },
+    "MessageResponse" : {
+      "type" : "object",
+      "properties" : {
+        "message" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Asignacion" : {
+      "type" : "object",
+      "properties" : {
+        "planillaUniqueId" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "codObjetoGasto" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "descObjetoGasto" : {
+          "type" : "string"
+        },
+        "categoria" : {
+          "type" : "string"
+        },
+        "descripCategoria" : {
+          "type" : "string"
+        },
+        "montoPresupuestado" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "montoLiquido" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "fechaActualizacion" : {
+          "type" : "string",
+          "format" : "date-time"
+        }
+      }
+    },
+    "Funcionario" : {
+      "type" : "object",
+      "properties" : {
+        "cedula" : {
+          "type" : "string"
+        },
+        "nivel" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "entidad" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "nombreEntidad" : {
+          "type" : "string"
+        },
+        "apellidosNombres" : {
+          "type" : "string"
+        },
+        "vinculo" : {
+          "type" : "string"
+        },
+        "tipoPresupuesto" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "programa" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "subprograma" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "proyecto" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "mes" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "totalPresupuestado" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "totalLiquido" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "asignaciones" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Asignacion"
+          }
+        }
+      }
+    },
+    "FuncionarioArray" : {
+      "type" : "object",
+      "properties" : {
+        "item" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Funcionario"
+          }
+        }
+      }
+    },
+    "GetListaPorEntidadResponse" : {
+      "type" : "object",
+      "properties" : {
+        "return" : {
+          "$ref" : "#/definitions/FuncionarioArray"
+        }
+      }
+    },
+    "GetListaPorEntidadPaginadoResponse" : {
+      "type" : "object",
+      "properties" : {
+        "get_return" : {
+          "$ref" : "#/definitions/FuncionarioArray"
+        }
+      }
+    },
+    "GetPresupuestoPorEntidadResponse" : {
+      "type" : "object",
+      "properties" : {
+        "get_return" : {
+          "$ref" : "#/definitions/LineaPresupuestoArray"
+        }
+      }
+    },
+    "LineaPresupuesto" : {
+      "type" : "object",
+      "properties" : {
+        "filaId" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "codigoNivel" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "codigoEntidad" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "nombreEntidad" : {
+          "type" : "string"
+        },
+        "codigoTipoPresupuesto" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "codigoPrograma" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "codigoSubprograma" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "codigoProyecto" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "codigoObjetoGasto" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "codigoFuentefinanciamiento" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "codigoOrganismoFinanciador" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "codigoPais" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "montoInicial" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "montoModificaciones" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "montoVigente" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "montoPlanFinancieroAcumulado" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "montoObligadoAcumulado" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "montoPagadoAcumulado" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "montoTransferidoAcumulado" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "montoSaldo" : {
+          "type" : "number",
+          "format" : "double"
+        }
+      }
+    },
+    "LineaPresupuestoArray" : {
+      "type" : "object",
+      "properties" : {
+        "item" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/LineaPresupuesto"
+          }
+        }
+      }
+    }
+  }
+}

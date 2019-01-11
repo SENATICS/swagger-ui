@@ -1,8 +1,10 @@
 {
   "swagger" : "2.0",
   "info" : {
-    "version" : "1.0"
+    "version" : "1.0",
+    "title" : "Servicio para consultar datos de la DGREC"
   },
+  "host" : "http://sii.senatics.gov.py:8080",
   "basePath" : "/registrocivil",
   "tags" : [ {
     "name" : "actas"
@@ -181,6 +183,80 @@
         }
       }
     },
+    "/actas/obtenerActasMatrimoniosPorCedula/{sistemaDeConsulta}" : {
+      "get" : {
+        "tags" : [ "actas" ],
+        "summary" : "Obtener actas de matrimonio. A partir de una cédula de identidad.",
+        "description" : "",
+        "operationId" : "obtenerActasMatrimoniosPorCedula",
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "sistemaDeConsulta",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "cedulaVaron",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "cedulaMujer",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Operación correcta.",
+            "schema" : {
+              "$ref" : "#/definitions/RespuestaActaDefuncion"
+            }
+          },
+          "400" : {
+            "description" : "Petición incorrecta.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "401" : {
+            "description" : "Credenciales incorrectas",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "403" : {
+            "description" : "El usuario no cuenta con los permisos suficientes para acceder al recurso solicitado.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "404" : {
+            "description" : "El recurso solicitado no existe.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "500" : {
+            "description" : "El sistema no se encuentra disponible. Por favor contacte con el administrador del sistema gobiernoelectronico@senatics.gov.py",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          }
+        }
+      }
+    },
     "/actas/obtenerActasMatrimonios" : {
       "get" : {
         "tags" : [ "actas" ],
@@ -269,81 +345,7 @@
           "200" : {
             "description" : "Operación correcta.",
             "schema" : {
-              "$ref" : "#/definitions/RespuestaActaMatrimonio"
-            }
-          },
-          "400" : {
-            "description" : "Petición incorrecta.",
-            "schema" : {
-              "$ref" : "#/definitions/MessageResponse"
-            }
-          },
-          "401" : {
-            "description" : "Credenciales incorrectas",
-            "schema" : {
-              "$ref" : "#/definitions/MessageResponse"
-            }
-          },
-          "403" : {
-            "description" : "El usuario no cuenta con los permisos suficientes para acceder al recurso solicitado.",
-            "schema" : {
-              "$ref" : "#/definitions/MessageResponse"
-            }
-          },
-          "404" : {
-            "description" : "El recurso solicitado no existe.",
-            "schema" : {
-              "$ref" : "#/definitions/MessageResponse"
-            }
-          },
-          "500" : {
-            "description" : "El sistema no se encuentra disponible. Por favor contacte con el administrador del sistema gobiernoelectronico@senatics.gov.py",
-            "schema" : {
-              "$ref" : "#/definitions/MessageResponse"
-            }
-          }
-        }
-      }
-    },
-    "/actas/obtenerActasMatrimoniosPorCedula/{sistemaDeConsulta}" : {
-      "get" : {
-        "tags" : [ "actas" ],
-        "summary" : "Obtener actas de matrimonio. A partir de una cédula de identidad.",
-        "description" : "",
-        "operationId" : "obtenerActasMatrimoniosPorCedula",
-        "produces" : [ "application/json", "application/xml" ],
-        "parameters" : [ {
-          "name" : "Authorization",
-          "in" : "header",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "Accept",
-          "in" : "header",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "sistemaDeConsulta",
-          "in" : "path",
-          "required" : true,
-          "type" : "integer",
-          "format" : "int32"
-        }, {
-          "name" : "cedulaVaron",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "cedulaMujer",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Operación correcta.",
-            "schema" : {
-              "$ref" : "#/definitions/RespuestaActaMatrimonio"
+              "$ref" : "#/definitions/RespuestaActaDefuncion"
             }
           },
           "400" : {
@@ -617,110 +619,6 @@
       "type" : "object",
       "properties" : {
         "message" : {
-          "type" : "string"
-        }
-      }
-    },
-    "ActaMatrimonio" : {
-      "type" : "object",
-      "properties" : {
-        "codMunicipioInscripto" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "codigoLibro" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "documIdenMujer" : {
-          "type" : "string"
-        },
-        "documIdenVaron" : {
-          "type" : "string"
-        },
-        "fechaCelebracion" : {
-          "type" : "string"
-        },
-        "fechaInscripcion" : {
-          "type" : "string"
-        },
-        "folioLibro" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "horaInscripcion" : {
-          "type" : "string"
-        },
-        "lugarCelebracion" : {
-          "type" : "string"
-        },
-        "lugarInscripcion" : {
-          "type" : "string"
-        },
-        "lugarNacMujer" : {
-          "type" : "string"
-        },
-        "lugarNacVaron" : {
-          "type" : "string"
-        },
-        "nacimientoFechaMujer" : {
-          "type" : "string"
-        },
-        "nacimientoFechaVaron" : {
-          "type" : "string"
-        },
-        "nombresMujer" : {
-          "type" : "string"
-        },
-        "nombresVaron" : {
-          "type" : "string"
-        },
-        "numeroActa" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "observacion" : {
-          "type" : "string"
-        },
-        "oficinaFilial" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "oficinaFilialDescripcion" : {
-          "type" : "string"
-        },
-        "primerApeMujer" : {
-          "type" : "string"
-        },
-        "primerApeVaron" : {
-          "type" : "string"
-        },
-        "segundoApeMujer" : {
-          "type" : "string"
-        },
-        "segundoApeVaron" : {
-          "type" : "string"
-        },
-        "tomoNro" : {
-          "type" : "integer",
-          "format" : "int32"
-        }
-      }
-    },
-    "RespuestaActaMatrimonio" : {
-      "type" : "object",
-      "properties" : {
-        "codError" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "listActaMatrimonio" : {
-          "type" : "array",
-          "items" : {
-            "$ref" : "#/definitions/ActaMatrimonio"
-          }
-        },
-        "mensaje" : {
           "type" : "string"
         }
       }

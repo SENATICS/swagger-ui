@@ -1,8 +1,10 @@
 {
   "swagger" : "2.0",
   "info" : {
-    "version" : "1.0"
+    "version" : "1.0",
+    "title" : "Servicio para consultar datos del MEC"
   },
+  "host" : "http://sii.senatics.gov.py:8080",
   "basePath" : "/mec",
   "tags" : [ {
     "name" : "gradoAcademico"

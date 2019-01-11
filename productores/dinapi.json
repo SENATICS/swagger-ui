@@ -1,82 +1,15 @@
 {
   "swagger" : "2.0",
   "info" : {
-    "version" : "1.0"
+    "version" : "1.0",
+    "title" : "Servicio para consultar datos de la DINAPI"
   },
+  "host" : "http://sii.senatics.gov.py:8080",
   "basePath" : "/dinapi",
   "tags" : [ {
     "name" : "dinapi"
   } ],
   "paths" : {
-    "/dinapi/obtenerMarcaPorDenominacion" : {
-      "get" : {
-        "tags" : [ "dinapi" ],
-        "summary" : "Obtener marcas por denominación.",
-        "description" : "",
-        "operationId" : "findPersonaByNombreApellido",
-        "produces" : [ "application/json", "application/xml" ],
-        "parameters" : [ {
-          "name" : "Authorization",
-          "in" : "header",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "Accept",
-          "in" : "header",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "denominacion",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "pagina",
-          "in" : "query",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Operación correcta.",
-            "schema" : {
-              "$ref" : "#/definitions/ObtenerMarcaPorDenominacionResponse"
-            }
-          },
-          "400" : {
-            "description" : "Petición incorrecta.",
-            "schema" : {
-              "$ref" : "#/definitions/MessageResponse"
-            }
-          },
-          "401" : {
-            "description" : "Credenciales incorrectas",
-            "schema" : {
-              "$ref" : "#/definitions/MessageResponse"
-            }
-          },
-          "403" : {
-            "description" : "El usuario no cuenta con los permisos suficientes para acceder al recurso solicitado.",
-            "schema" : {
-              "$ref" : "#/definitions/MessageResponse"
-            }
-          },
-          "404" : {
-            "description" : "El recurso solicitado no existe.",
-            "schema" : {
-              "$ref" : "#/definitions/MessageResponse"
-            }
-          },
-          "500" : {
-            "description" : "El sistema no se encuentra disponible. Por favor contacte con el administrador del sistema gobiernoelectronico@senatics.gov.py",
-            "schema" : {
-              "$ref" : "#/definitions/MessageResponse"
-            }
-          }
-        }
-      }
-    },
     "/dinapi/obtenerMarcaPorDenominacionEstado" : {
       "get" : {
         "tags" : [ "dinapi" ],
@@ -116,6 +49,75 @@
             "description" : "Operación correcta.",
             "schema" : {
               "$ref" : "#/definitions/ObtenerMarcaPorDenominacionEstadoResponse"
+            }
+          },
+          "400" : {
+            "description" : "Petición incorrecta.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "401" : {
+            "description" : "Credenciales incorrectas",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "403" : {
+            "description" : "El usuario no cuenta con los permisos suficientes para acceder al recurso solicitado.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "404" : {
+            "description" : "El recurso solicitado no existe.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "500" : {
+            "description" : "El sistema no se encuentra disponible. Por favor contacte con el administrador del sistema gobiernoelectronico@senatics.gov.py",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          }
+        }
+      }
+    },
+    "/dinapi/obtenerMarcaPorDenominacion" : {
+      "get" : {
+        "tags" : [ "dinapi" ],
+        "summary" : "Obtener marcas por denominación.",
+        "description" : "",
+        "operationId" : "findPersonaByNombreApellido",
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "denominacion",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "pagina",
+          "in" : "query",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Operación correcta.",
+            "schema" : {
+              "$ref" : "#/definitions/ObtenerMarcaPorDenominacionResponse"
             }
           },
           "400" : {
@@ -239,7 +241,7 @@
         }
       }
     },
-    "ObtenerMarcaPorDenominacionResponse" : {
+    "ObtenerMarcaPorDenominacionEstadoResponse" : {
       "type" : "object",
       "properties" : {
         "return" : {
@@ -255,7 +257,7 @@
         }
       }
     },
-    "ObtenerMarcaPorDenominacionEstadoResponse" : {
+    "ObtenerMarcaPorDenominacionResponse" : {
       "type" : "object",
       "properties" : {
         "return" : {

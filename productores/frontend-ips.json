@@ -144,6 +144,69 @@
         }
       }
     },
+    "/ips/findDatosAsegurado/{nroDocumento}" : {
+      "get" : {
+        "tags" : [ "ips" ],
+        "summary" : "Consulta Datos del Asegurado.",
+        "description" : "",
+        "operationId" : "findDatosAsegurado",
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "nroDocumento",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Operación correcta.",
+            "schema" : {
+              "$ref" : "#/definitions/RetornoDatosAsegurado"
+            }
+          },
+          "400" : {
+            "description" : "Petición incorrecta.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "401" : {
+            "description" : "Credenciales incorrectas",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "403" : {
+            "description" : "El usuario no cuenta con los permisos suficientes para acceder al recurso solicitado.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "404" : {
+            "description" : "El recurso solicitado no existe.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "500" : {
+            "description" : "El sistema no se encuentra disponible. Por favor contacte con el administrador del sistema gobiernoelectronico@senatics.gov.py",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          }
+        }
+      }
+    },
     "/ips/findDatosSalario/{nroDocumento}" : {
       "get" : {
         "tags" : [ "ips" ],
@@ -287,69 +350,6 @@
           }
         }
       }
-    },
-    "/ips/findDatosAsegurado/{nroDocumento}" : {
-      "get" : {
-        "tags" : [ "ips" ],
-        "summary" : "Consulta Datos del Asegurado.",
-        "description" : "",
-        "operationId" : "findDatosAsegurado",
-        "produces" : [ "application/json", "application/xml" ],
-        "parameters" : [ {
-          "name" : "Authorization",
-          "in" : "header",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "Accept",
-          "in" : "header",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "nroDocumento",
-          "in" : "path",
-          "required" : true,
-          "type" : "string"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Operación correcta.",
-            "schema" : {
-              "$ref" : "#/definitions/RetornoDatosAsegurado"
-            }
-          },
-          "400" : {
-            "description" : "Petición incorrecta.",
-            "schema" : {
-              "$ref" : "#/definitions/MessageResponse"
-            }
-          },
-          "401" : {
-            "description" : "Credenciales incorrectas",
-            "schema" : {
-              "$ref" : "#/definitions/MessageResponse"
-            }
-          },
-          "403" : {
-            "description" : "El usuario no cuenta con los permisos suficientes para acceder al recurso solicitado.",
-            "schema" : {
-              "$ref" : "#/definitions/MessageResponse"
-            }
-          },
-          "404" : {
-            "description" : "El recurso solicitado no existe.",
-            "schema" : {
-              "$ref" : "#/definitions/MessageResponse"
-            }
-          },
-          "500" : {
-            "description" : "El sistema no se encuentra disponible. Por favor contacte con el administrador del sistema gobiernoelectronico@senatics.gov.py",
-            "schema" : {
-              "$ref" : "#/definitions/MessageResponse"
-            }
-          }
-        }
-      }
     }
   },
   "definitions" : {
@@ -431,6 +431,59 @@
           "type" : "array",
           "items" : {
             "$ref" : "#/definitions/ListaEmpresas"
+          }
+        },
+        "returnCode" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "returnMessage" : {
+          "type" : "string"
+        }
+      }
+    },
+    "DatosAsegurado" : {
+      "type" : "object",
+      "properties" : {
+        "aporteJubilacion" : {
+          "type" : "string"
+        },
+        "cantidadBeneficiariosActivos" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "empleador" : {
+          "type" : "string"
+        },
+        "estado" : {
+          "type" : "string"
+        },
+        "fechaInscripcion" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "mesesAporte" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "numeroCI" : {
+          "type" : "string"
+        },
+        "tipoAsegurado" : {
+          "type" : "string"
+        },
+        "vigente" : {
+          "type" : "string"
+        }
+      }
+    },
+    "RetornoDatosAsegurado" : {
+      "type" : "object",
+      "properties" : {
+        "lstDatosAsegurado" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/DatosAsegurado"
           }
         },
         "returnCode" : {
@@ -534,59 +587,6 @@
           "type" : "array",
           "items" : {
             "$ref" : "#/definitions/ListaDatosAOP"
-          }
-        },
-        "returnCode" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "returnMessage" : {
-          "type" : "string"
-        }
-      }
-    },
-    "DatosAsegurado" : {
-      "type" : "object",
-      "properties" : {
-        "aporteJubilacion" : {
-          "type" : "string"
-        },
-        "cantidadBeneficiariosActivos" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "empleador" : {
-          "type" : "string"
-        },
-        "estado" : {
-          "type" : "string"
-        },
-        "fechaInscripcion" : {
-          "type" : "string",
-          "format" : "date-time"
-        },
-        "mesesAporte" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "numeroCI" : {
-          "type" : "string"
-        },
-        "tipoAsegurado" : {
-          "type" : "string"
-        },
-        "vigente" : {
-          "type" : "string"
-        }
-      }
-    },
-    "RetornoDatosAsegurado" : {
-      "type" : "object",
-      "properties" : {
-        "lstDatosAsegurado" : {
-          "type" : "array",
-          "items" : {
-            "$ref" : "#/definitions/DatosAsegurado"
           }
         },
         "returnCode" : {

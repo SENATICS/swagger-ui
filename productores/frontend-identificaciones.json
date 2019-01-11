@@ -1,8 +1,10 @@
 {
   "swagger" : "2.0",
   "info" : {
-    "version" : "1.0"
+    "version" : "1.0",
+    "title" : "Servicio Persona del Dpto. de Identificaciones"
   },
+  "host" : "http://sii.senatics.gov.py:8080",
   "basePath" : "/frontend-identificaciones",
   "tags" : [ {
     "name" : "persona"
@@ -36,6 +38,80 @@
             "description" : "Operación correcta.",
             "schema" : {
               "$ref" : "#/definitions/ObtenerPersonaPorNroCedulaResponse"
+            }
+          },
+          "400" : {
+            "description" : "Petición incorrecta.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "401" : {
+            "description" : "Credenciales incorrectas",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "403" : {
+            "description" : "El usuario no cuenta con los permisos suficientes para acceder al recurso solicitado.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "404" : {
+            "description" : "El recurso solicitado no existe.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "500" : {
+            "description" : "El sistema no se encuentra disponible. Por favor contacte con el administrador del sistema gobiernoelectronico@senatics.gov.py",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          }
+        }
+      }
+    },
+    "/persona/obtenerPersonaPorNombreApellido/{nombres}/{apellidos}/{nroPagina}" : {
+      "get" : {
+        "tags" : [ "persona" ],
+        "summary" : "Obtener persona por nombre y apellido.",
+        "description" : "",
+        "operationId" : "findPersonaByNombreApellido",
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "nombres",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "apellidos",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "nroPagina",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Operación correcta.",
+            "schema" : {
+              "$ref" : "#/definitions/ObtenerPersonaPorNombreApellidoResponse"
             }
           },
           "400" : {
@@ -115,80 +191,6 @@
             "description" : "Operación correcta.",
             "schema" : {
               "$ref" : "#/definitions/ObtenerPersonaPorNombreApellidoFechaNacResponse"
-            }
-          },
-          "400" : {
-            "description" : "Petición incorrecta.",
-            "schema" : {
-              "$ref" : "#/definitions/MessageResponse"
-            }
-          },
-          "401" : {
-            "description" : "Credenciales incorrectas",
-            "schema" : {
-              "$ref" : "#/definitions/MessageResponse"
-            }
-          },
-          "403" : {
-            "description" : "El usuario no cuenta con los permisos suficientes para acceder al recurso solicitado.",
-            "schema" : {
-              "$ref" : "#/definitions/MessageResponse"
-            }
-          },
-          "404" : {
-            "description" : "El recurso solicitado no existe.",
-            "schema" : {
-              "$ref" : "#/definitions/MessageResponse"
-            }
-          },
-          "500" : {
-            "description" : "El sistema no se encuentra disponible. Por favor contacte con el administrador del sistema gobiernoelectronico@senatics.gov.py",
-            "schema" : {
-              "$ref" : "#/definitions/MessageResponse"
-            }
-          }
-        }
-      }
-    },
-    "/persona/obtenerPersonaPorNombreApellido/{nombres}/{apellidos}/{nroPagina}" : {
-      "get" : {
-        "tags" : [ "persona" ],
-        "summary" : "Obtener persona por nombre y apellido.",
-        "description" : "",
-        "operationId" : "findPersonaByNombreApellido",
-        "produces" : [ "application/json", "application/xml" ],
-        "parameters" : [ {
-          "name" : "Authorization",
-          "in" : "header",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "Accept",
-          "in" : "header",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "nombres",
-          "in" : "path",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "name" : "apellidos",
-          "in" : "path",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "name" : "nroPagina",
-          "in" : "path",
-          "required" : true,
-          "type" : "integer",
-          "format" : "int32"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Operación correcta.",
-            "schema" : {
-              "$ref" : "#/definitions/ObtenerPersonaPorNombreApellidoResponse"
             }
           },
           "400" : {
@@ -320,7 +322,7 @@
         }
       }
     },
-    "ObtenerPersonaPorNombreApellidoFechaNacResponse" : {
+    "ObtenerPersonaPorNombreApellidoResponse" : {
       "type" : "object",
       "properties" : {
         "return" : {
@@ -328,7 +330,7 @@
         }
       }
     },
-    "ObtenerPersonaPorNombreApellidoResponse" : {
+    "ObtenerPersonaPorNombreApellidoFechaNacResponse" : {
       "type" : "object",
       "properties" : {
         "return" : {

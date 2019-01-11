@@ -1,13 +1,143 @@
 {
   "swagger" : "2.0",
   "info" : {
-    "version" : "1.0"
+    "version" : "1.0",
+    "title" : "Servicio para obtener datos de empresas y empleados registrados en los Registros del MTESS"
   },
+  "host" : "http://sii.senatics.gov.py:8080",
   "basePath" : "/mtess",
   "tags" : [ {
+    "name" : "empresa"
+  }, {
     "name" : "empleado"
   } ],
   "paths" : {
+    "/empresa/consultarRUC/{ruc}" : {
+      "get" : {
+        "tags" : [ "empresa" ],
+        "summary" : "Obtener listado de empleados de una empresa por ruc",
+        "description" : "",
+        "operationId" : "consultarRUC",
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "ruc",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Operación correcta.",
+            "schema" : {
+              "$ref" : "#/definitions/EmpresaResponse"
+            }
+          },
+          "400" : {
+            "description" : "Petición incorrecta.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "401" : {
+            "description" : "Credenciales incorrectas",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "403" : {
+            "description" : "El usuario no cuenta con los permisos suficientes para acceder al recurso solicitado.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "404" : {
+            "description" : "El recurso solicitado no existe.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "500" : {
+            "description" : "El sistema no se encuentra disponible. Por favor contacte con el administrador del sistema gobiernoelectronico@senatics.gov.py",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          }
+        }
+      }
+    },
+    "/empresa/consultarPatronal/{patronal}" : {
+      "get" : {
+        "tags" : [ "empresa" ],
+        "summary" : "Obtener listado de empleados de una empresa por número patronal",
+        "description" : "",
+        "operationId" : "consultarPatronal",
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "patronal",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Operación correcta.",
+            "schema" : {
+              "$ref" : "#/definitions/EmpresaResponse"
+            }
+          },
+          "400" : {
+            "description" : "Petición incorrecta.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "401" : {
+            "description" : "Credenciales incorrectas",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "403" : {
+            "description" : "El usuario no cuenta con los permisos suficientes para acceder al recurso solicitado.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "404" : {
+            "description" : "El recurso solicitado no existe.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "500" : {
+            "description" : "El sistema no se encuentra disponible. Por favor contacte con el administrador del sistema gobiernoelectronico@senatics.gov.py",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          }
+        }
+      }
+    },
     "/empleado/obtenerEmpleado/{documento}" : {
       "get" : {
         "tags" : [ "empleado" ],
@@ -35,7 +165,7 @@
           "200" : {
             "description" : "Operación correcta.",
             "schema" : {
-              "$ref" : "#/definitions/ComprobarCIResponse"
+              "$ref" : "#/definitions/PersonaResponse"
             }
           },
           "400" : {
@@ -73,11 +203,156 @@
     }
   },
   "definitions" : {
-    "ComprobarCIResponse" : {
+    "Empleado" : {
       "type" : "object",
       "properties" : {
-        "documento" : {
+        "nro_orden" : {
           "type" : "string"
+        },
+        "nombre" : {
+          "type" : "string"
+        },
+        "apellidos" : {
+          "type" : "string"
+        },
+        "fecha_nac" : {
+          "type" : "string"
+        },
+        "ci" : {
+          "type" : "string"
+        },
+        "domicilio" : {
+          "type" : "string"
+        },
+        "distrito" : {
+          "type" : "string"
+        },
+        "ciudad" : {
+          "type" : "string"
+        },
+        "fechaentradaempleado" : {
+          "type" : "string"
+        },
+        "estado" : {
+          "type" : "string"
+        },
+        "canthijos" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "nacionalidad" : {
+          "type" : "string"
+        },
+        "estado_civil" : {
+          "type" : "string"
+        },
+        "es_indigena" : {
+          "type" : "string"
+        },
+        "empleado_cargo" : {
+          "type" : "string"
+        },
+        "empleado_categoria" : {
+          "type" : "string"
+        },
+        "tipo_discapacidad" : {
+          "type" : "string"
+        },
+        "profesion" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Empresa" : {
+      "type" : "object",
+      "properties" : {
+        "nro_patronal" : {
+          "type" : "string"
+        },
+        "ruc" : {
+          "type" : "string"
+        },
+        "legal" : {
+          "type" : "string"
+        },
+        "fantasy" : {
+          "type" : "string"
+        },
+        "nro_patronal_ips" : {
+          "type" : "string"
+        },
+        "categoria_segun_mic" : {
+          "type" : "string"
+        },
+        "direccion" : {
+          "type" : "string"
+        },
+        "fecha_inscrip" : {
+          "type" : "string"
+        },
+        "activ_principal" : {
+          "type" : "string"
+        },
+        "tel" : {
+          "type" : "string"
+        },
+        "email" : {
+          "type" : "string"
+        },
+        "empresa_ciudad" : {
+          "type" : "string"
+        },
+        "cantidad_empleados_total" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "categoria_segun_cantidad_empleados" : {
+          "type" : "string"
+        },
+        "cantidad_empleados_hombres" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "cantidad_empleados_mujeres" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "situacion" : {
+          "type" : "string"
+        },
+        "tipo_sociedad" : {
+          "type" : "string"
+        },
+        "actividad_economica" : {
+          "type" : "string"
+        },
+        "tipo_empresa" : {
+          "type" : "string"
+        },
+        "id_activ_econ" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "empleados" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Empleado"
+          }
+        }
+      }
+    },
+    "EmpresaResponse" : {
+      "type" : "object",
+      "properties" : {
+        "codeError" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "messageError" : {
+          "type" : "string"
+        },
+        "empresa" : {
+          "$ref" : "#/definitions/Empresa"
         }
       }
     },
@@ -86,6 +361,87 @@
       "properties" : {
         "message" : {
           "type" : "string"
+        }
+      }
+    },
+    "EmpresasEmpleados" : {
+      "type" : "object",
+      "properties" : {
+        "activo_empresa" : {
+          "type" : "string"
+        },
+        "empresa_actividad_econom" : {
+          "type" : "string"
+        },
+        "empresa_ciudad" : {
+          "type" : "string"
+        },
+        "empresa_departamento" : {
+          "type" : "string"
+        },
+        "empresa_nombre" : {
+          "type" : "string"
+        },
+        "empresa_nroPatronal" : {
+          "type" : "string"
+        },
+        "empresa_ruc" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Persona" : {
+      "type" : "object",
+      "properties" : {
+        "apellidos" : {
+          "type" : "string"
+        },
+        "cantidadHijos" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "cedula" : {
+          "type" : "string"
+        },
+        "domicilio" : {
+          "type" : "string"
+        },
+        "empresasEmpleados" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/EmpresasEmpleados"
+          }
+        },
+        "estado_civil" : {
+          "type" : "string"
+        },
+        "fechaNacimiento" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "nacionalidad" : {
+          "type" : "string"
+        },
+        "nombre" : {
+          "type" : "string"
+        },
+        "sexo" : {
+          "type" : "string"
+        }
+      }
+    },
+    "PersonaResponse" : {
+      "type" : "object",
+      "properties" : {
+        "codeError" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "message" : {
+          "type" : "string"
+        },
+        "persona" : {
+          "$ref" : "#/definitions/Persona"
         }
       }
     }

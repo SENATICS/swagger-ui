@@ -134,8 +134,19 @@ export default class Topbar extends React.Component {
       formOnSubmit = this.downloadUrl
 
        let rows = []
-       rows.push(<option key={1} value={'/productores/frontend-identificaciones.json'}>{'Identificaciones'}</option>)
+       rows.push(<option key={1} value={'/productores/frontend-identificaciones.json'}>{'DPTO. IDENTIFICACIONES'}</option>)
        rows.push(<option key={2} value={'/productores/mec.json'}>{'MEC'}</option>)
+       rows.push(<option key={3} value={'/productores/dgrp-csj.json'}>{'DGRP'}</option>)
+       rows.push(<option key={4} value={'/productores/dinapi.json'}>{'DINAPI'}</option>)
+       rows.push(<option key={5} value={'/productores/dncp.json'}>{'DNCP'}</option>)
+       rows.push(<option key={6} value={'/productores/frontend-csj.json'}>{'CSJ'}</option>)
+       rows.push(<option key={7} value={'/productores/frontend-ips.json'}>{'IPS'}</option>)
+       rows.push(<option key={8} value={'/productores/hacienda.json'}>{'HACIENDA'}</option>)
+       rows.push(<option key={9} value={'/productores/mtess.json'}>{'MTESS'}</option>)
+       rows.push(<option key={10} value={'/productores/registrocivil.json'}>{'REGISTRO CIVIL'}</option>)
+       rows.push(<option key={11} value={'/productores/rua.json'}>{'RUA'}</option>)
+       rows.push(<option key={12} value={'/productores/set.json'}>{'SET'}</option>)
+       rows.push(<option key={13} value={'/productores/sfp.json'}>{'SFP'}</option>)
 
       control.push(
         <label className="select-label" htmlFor="select"><span>Productor</span>

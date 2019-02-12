@@ -4,12 +4,11 @@
     "version" : "1.0",
     "title" : "Servicio para consultar datos de la DINAPI"
   },
-  "host" : "sii.senatics.gov.py:8080",
+  "host" : "http://sii.senatics.gov.py:8080",
   "basePath" : "/dinapi",
   "tags" : [ {
     "name" : "dinapi"
   } ],
-  "schemes" : [ "http" ],
   "paths" : {
     "/dinapi/obtenerMarcaPorDenominacionEstado" : {
       "get" : {

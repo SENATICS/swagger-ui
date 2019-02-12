@@ -1,32 +1,19 @@
 {
   "swagger" : "2.0",
   "info" : {
-    "version" : "1.0",
-    "title" : "Servicio para consultar datos de la SET"
+    "version" : "1.0"
   },
-  "host" : "sii.senatics.gov.py:8080",
-  "basePath" : "/set",
+  "basePath" : "/frontend-ips",
   "tags" : [ {
-    "name" : "ruc"
-  }, {
-    "name" : "rucSET"
-  }, {
-    "name" : "timbradoSET"
-  }, {
-    "name" : "maquinaRegistradoraSET"
-  }, {
-    "name" : "timbrado"
-  }, {
-    "name" : "maquinaRegistradora"
+    "name" : "ips"
   } ],
-  "schemes" : [ "http" ],
   "paths" : {
-    "/ruc/obtenerDatos" : {
+    "/ips/findEmpresasXFechaInscripcion/{fechaInscripcionIni}/{fechaInscripcionFin}" : {
       "get" : {
-        "tags" : [ "ruc" ],
-        "summary" : "Método exclusivo para sistemas de la SENATICs para obtener datos de RUC por numero de ruc y dv",
+        "tags" : [ "ips" ],
+        "summary" : "Consulta Datos del Salario del Asegurado.",
         "description" : "",
-        "operationId" : "findConsultaRuc",
+        "operationId" : "findEmpresasXFechaInscripcion",
         "produces" : [ "application/json", "application/xml" ],
         "parameters" : [ {
           "name" : "Authorization",
@@ -39,21 +26,21 @@
           "required" : false,
           "type" : "string"
         }, {
-          "name" : "ruc",
-          "in" : "query",
-          "required" : false,
+          "name" : "fechaInscripcionIni",
+          "in" : "path",
+          "required" : true,
           "type" : "string"
         }, {
-          "name" : "dv",
-          "in" : "query",
-          "required" : false,
+          "name" : "fechaInscripcionFin",
+          "in" : "path",
+          "required" : true,
           "type" : "string"
         } ],
         "responses" : {
           "200" : {
             "description" : "Operación correcta.",
             "schema" : {
-              "$ref" : "#/definitions/ConsultaRucResponse"
+              "$ref" : "#/definitions/RetornoEmpresasXFechaInscripcion"
             }
           },
           "400" : {
@@ -89,13 +76,13 @@
         }
       }
     },
-    "/rucSET/obtenerDatos" : {
+    "/ips/findEmpresasXFechaInactivacion/{fechaInactivacionIni}/{fechaInactivacionFin}" : {
       "get" : {
-        "tags" : [ "rucSET" ],
-        "summary" : "Obtener datos de RUC por numero de ruc, dv y apiKey",
+        "tags" : [ "ips" ],
+        "summary" : "Consulta Datos del Salario del Asegurado.",
         "description" : "",
-        "operationId" : "findConsultaRucSet",
-        "produces" : [ "application/json", "application/xml", "application/xhtml+xml" ],
+        "operationId" : "findEmpresasXFechaInactivacion",
+        "produces" : [ "application/json", "application/xml" ],
         "parameters" : [ {
           "name" : "Authorization",
           "in" : "header",
@@ -107,26 +94,21 @@
           "required" : false,
           "type" : "string"
         }, {
-          "name" : "ruc",
-          "in" : "query",
-          "required" : false,
+          "name" : "fechaInactivacionIni",
+          "in" : "path",
+          "required" : true,
           "type" : "string"
         }, {
-          "name" : "dv",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "apiKey",
-          "in" : "query",
-          "required" : false,
+          "name" : "fechaInactivacionFin",
+          "in" : "path",
+          "required" : true,
           "type" : "string"
         } ],
         "responses" : {
           "200" : {
             "description" : "Operación correcta.",
             "schema" : {
-              "$ref" : "#/definitions/ConsultaRucResponse"
+              "$ref" : "#/definitions/RetornoEmpresasXFechaInactivacion"
             }
           },
           "400" : {
@@ -162,13 +144,13 @@
         }
       }
     },
-    "/timbradoSET/validarDocumento" : {
+    "/ips/findDatosAsegurado/{nroDocumento}" : {
       "get" : {
-        "tags" : [ "timbradoSET" ],
-        "summary" : "Validar el Timbrado del Documento",
+        "tags" : [ "ips" ],
+        "summary" : "Consulta Datos del Asegurado.",
         "description" : "",
-        "operationId" : "findValidezDocumentoTimbradoSet",
-        "produces" : [ "application/json", "application/xml", "application/xhtml+xml" ],
+        "operationId" : "findDatosAsegurado",
+        "produces" : [ "application/json", "application/xml" ],
         "parameters" : [ {
           "name" : "Authorization",
           "in" : "header",
@@ -180,297 +162,160 @@
           "required" : false,
           "type" : "string"
         }, {
-          "name" : "ruc",
+          "name" : "nroDocumento",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Operación correcta.",
+            "schema" : {
+              "$ref" : "#/definitions/RetornoDatosAsegurado"
+            }
+          },
+          "400" : {
+            "description" : "Petición incorrecta.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "401" : {
+            "description" : "Credenciales incorrectas",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "403" : {
+            "description" : "El usuario no cuenta con los permisos suficientes para acceder al recurso solicitado.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "404" : {
+            "description" : "El recurso solicitado no existe.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "500" : {
+            "description" : "El sistema no se encuentra disponible. Por favor contacte con el administrador del sistema gobiernoelectronico@senatics.gov.py",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          }
+        }
+      }
+    },
+    "/ips/findDatosSalario/{nroDocumento}" : {
+      "get" : {
+        "tags" : [ "ips" ],
+        "summary" : "Consulta Datos del Salario del Asegurado.",
+        "description" : "",
+        "operationId" : "findDatosSalario",
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "nroDocumento",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Operación correcta.",
+            "schema" : {
+              "$ref" : "#/definitions/RetornoDatosSalario"
+            }
+          },
+          "400" : {
+            "description" : "Petición incorrecta.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "401" : {
+            "description" : "Credenciales incorrectas",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "403" : {
+            "description" : "El usuario no cuenta con los permisos suficientes para acceder al recurso solicitado.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "404" : {
+            "description" : "El recurso solicitado no existe.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "500" : {
+            "description" : "El sistema no se encuentra disponible. Por favor contacte con el administrador del sistema gobiernoelectronico@senatics.gov.py",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          }
+        }
+      }
+    },
+    "/ips/findConstanciaInscripcionPatronal" : {
+      "get" : {
+        "tags" : [ "ips" ],
+        "summary" : "Consulta Datos del Salario del Asegurado.",
+        "description" : "",
+        "operationId" : "findConstanciaInscripcionPatronal",
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "nroRuc",
           "in" : "query",
           "required" : false,
           "type" : "string"
         }, {
-          "name" : "dv",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "apiKey",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "numeroTimbrado",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "tipoDocumento",
+          "name" : "codZona",
           "in" : "query",
           "required" : false,
           "type" : "integer",
           "format" : "int32"
         }, {
-          "name" : "numeroDocumento",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "fechaExpedicion",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Operación correcta.",
-            "schema" : {
-              "$ref" : "#/definitions/ValidezDocumentoTimbradoResponse"
-            }
-          },
-          "400" : {
-            "description" : "Petición incorrecta.",
-            "schema" : {
-              "$ref" : "#/definitions/MessageResponse"
-            }
-          },
-          "401" : {
-            "description" : "Credenciales incorrectas",
-            "schema" : {
-              "$ref" : "#/definitions/MessageResponse"
-            }
-          },
-          "403" : {
-            "description" : "El usuario no cuenta con los permisos suficientes para acceder al recurso solicitado.",
-            "schema" : {
-              "$ref" : "#/definitions/MessageResponse"
-            }
-          },
-          "404" : {
-            "description" : "El recurso solicitado no existe.",
-            "schema" : {
-              "$ref" : "#/definitions/MessageResponse"
-            }
-          },
-          "500" : {
-            "description" : "El sistema no se encuentra disponible. Por favor contacte con el administrador del sistema gobiernoelectronico@senatics.gov.py",
-            "schema" : {
-              "$ref" : "#/definitions/MessageResponse"
-            }
-          }
-        }
-      }
-    },
-    "/maquinaRegistradoraSET/validarDocumento" : {
-      "get" : {
-        "tags" : [ "maquinaRegistradoraSET" ],
-        "summary" : "Validar máquina registradora de documentos",
-        "description" : "",
-        "operationId" : "findValidezDocumentoMaquinaRegistradoraSet",
-        "produces" : [ "application/json", "application/xml", "application/xhtml+xml" ],
-        "parameters" : [ {
-          "name" : "Authorization",
-          "in" : "header",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "Accept",
-          "in" : "header",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "ruc",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "dv",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "apiKey",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "numeroTimbrado",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "fechaExpedicion",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Operación correcta.",
-            "schema" : {
-              "$ref" : "#/definitions/ValidezDocumentoMaquinaRegistradoraResponse"
-            }
-          },
-          "400" : {
-            "description" : "Petición incorrecta.",
-            "schema" : {
-              "$ref" : "#/definitions/MessageResponse"
-            }
-          },
-          "401" : {
-            "description" : "Credenciales incorrectas",
-            "schema" : {
-              "$ref" : "#/definitions/MessageResponse"
-            }
-          },
-          "403" : {
-            "description" : "El usuario no cuenta con los permisos suficientes para acceder al recurso solicitado.",
-            "schema" : {
-              "$ref" : "#/definitions/MessageResponse"
-            }
-          },
-          "404" : {
-            "description" : "El recurso solicitado no existe.",
-            "schema" : {
-              "$ref" : "#/definitions/MessageResponse"
-            }
-          },
-          "500" : {
-            "description" : "El sistema no se encuentra disponible. Por favor contacte con el administrador del sistema gobiernoelectronico@senatics.gov.py",
-            "schema" : {
-              "$ref" : "#/definitions/MessageResponse"
-            }
-          }
-        }
-      }
-    },
-    "/timbrado/validarDocumento" : {
-      "get" : {
-        "tags" : [ "timbrado" ],
-        "summary" : "Validar el Timbrado del Documento sin api key exclusivo para la SENATICs.",
-        "description" : "",
-        "operationId" : "findValidezDocumentoTimbrado",
-        "produces" : [ "application/json", "application/xml", "application/xhtml+xml" ],
-        "parameters" : [ {
-          "name" : "Authorization",
-          "in" : "header",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "Accept",
-          "in" : "header",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "ruc",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "dv",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "numeroTimbrado",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "tipoDocumento",
+          "name" : "codActivi",
           "in" : "query",
           "required" : false,
           "type" : "integer",
           "format" : "int32"
         }, {
-          "name" : "numeroDocumento",
+          "name" : "nroEmplea",
           "in" : "query",
           "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "fechaExpedicion",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
+          "type" : "integer",
+          "format" : "int32"
         } ],
         "responses" : {
           "200" : {
             "description" : "Operación correcta.",
             "schema" : {
-              "$ref" : "#/definitions/ValidezDocumentoTimbradoResponse"
-            }
-          },
-          "400" : {
-            "description" : "Petición incorrecta.",
-            "schema" : {
-              "$ref" : "#/definitions/MessageResponse"
-            }
-          },
-          "401" : {
-            "description" : "Credenciales incorrectas",
-            "schema" : {
-              "$ref" : "#/definitions/MessageResponse"
-            }
-          },
-          "403" : {
-            "description" : "El usuario no cuenta con los permisos suficientes para acceder al recurso solicitado.",
-            "schema" : {
-              "$ref" : "#/definitions/MessageResponse"
-            }
-          },
-          "404" : {
-            "description" : "El recurso solicitado no existe.",
-            "schema" : {
-              "$ref" : "#/definitions/MessageResponse"
-            }
-          },
-          "500" : {
-            "description" : "El sistema no se encuentra disponible. Por favor contacte con el administrador del sistema gobiernoelectronico@senatics.gov.py",
-            "schema" : {
-              "$ref" : "#/definitions/MessageResponse"
-            }
-          }
-        }
-      }
-    },
-    "/maquinaRegistradora/validarDocumento" : {
-      "get" : {
-        "tags" : [ "maquinaRegistradora" ],
-        "summary" : "Validar máquina registradora de documentos, método de uso exclusivo para la SENATICs.",
-        "description" : "",
-        "operationId" : "findValidezDocumentoMaquinaRegistradora",
-        "produces" : [ "application/json", "application/xml", "application/xhtml+xml" ],
-        "parameters" : [ {
-          "name" : "Authorization",
-          "in" : "header",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "Accept",
-          "in" : "header",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "ruc",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "dv",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "numeroTimbrado",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "fechaExpedicion",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Operación correcta.",
-            "schema" : {
-              "$ref" : "#/definitions/ValidezDocumentoMaquinaRegistradoraResponse"
+              "$ref" : "#/definitions/RetornoDatosAOP"
             }
           },
           "400" : {
@@ -508,63 +353,66 @@
     }
   },
   "definitions" : {
-    "ConsultaRucResponse" : {
+    "ListaEmpresas" : {
       "type" : "object",
       "properties" : {
-        "return" : {
-          "$ref" : "#/definitions/InfoContribuyenteResponse"
+        "des_actpri" : {
+          "type" : "string"
+        },
+        "des_emplea" : {
+          "type" : "string"
+        },
+        "des_sucurs" : {
+          "type" : "string"
+        },
+        "des_tipemp" : {
+          "type" : "string"
+        },
+        "dig_verificador" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "fec_iniact" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "fec_inscri" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "ide_emplea" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "ind_estemp" : {
+          "type" : "string"
+        },
+        "ind_tipemp" : {
+          "type" : "string"
+        },
+        "nro_patron" : {
+          "type" : "string"
+        },
+        "nro_ruc" : {
+          "type" : "string"
         }
       }
     },
-    "Contribuyente" : {
+    "RetornoEmpresasXFechaInscripcion" : {
       "type" : "object",
       "properties" : {
-        "categoria" : {
-          "type" : "string"
+        "lstEmpresas" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/ListaEmpresas"
+          }
         },
-        "dv" : {
-          "type" : "string"
+        "returnCode" : {
+          "type" : "integer",
+          "format" : "int32"
         },
-        "estado" : {
+        "returnMessage" : {
           "type" : "string"
-        },
-        "mesCierre" : {
-          "type" : "string"
-        },
-        "razonSocial" : {
-          "type" : "string"
-        },
-        "ruc" : {
-          "type" : "string"
-        },
-        "rucAnterior" : {
-          "type" : "string"
-        },
-        "tipoPersona" : {
-          "type" : "string"
-        },
-        "tipoSociedad" : {
-          "type" : "string"
-        },
-        "valido" : {
-          "type" : "string"
-        }
-      }
-    },
-    "InfoContribuyenteResponse" : {
-      "type" : "object",
-      "properties" : {
-        "codigo" : {
-          "type" : "string"
-        },
-        "estado" : {
-          "type" : "string"
-        },
-        "mensaje" : {
-          "type" : "string"
-        },
-        "contribuyente" : {
-          "$ref" : "#/definitions/Contribuyente"
         }
       }
     },
@@ -576,33 +424,177 @@
         }
       }
     },
-    "ValidezDocumentoResponse" : {
+    "RetornoEmpresasXFechaInactivacion" : {
       "type" : "object",
       "properties" : {
-        "codigo" : {
+        "lstEmpresas" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/ListaEmpresas"
+          }
+        },
+        "returnCode" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "returnMessage" : {
+          "type" : "string"
+        }
+      }
+    },
+    "DatosAsegurado" : {
+      "type" : "object",
+      "properties" : {
+        "aporteJubilacion" : {
+          "type" : "string"
+        },
+        "cantidadBeneficiariosActivos" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "empleador" : {
           "type" : "string"
         },
         "estado" : {
           "type" : "string"
         },
-        "mensaje" : {
+        "fechaInscripcion" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "mesesAporte" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "numeroCI" : {
+          "type" : "string"
+        },
+        "tipoAsegurado" : {
+          "type" : "string"
+        },
+        "vigente" : {
           "type" : "string"
         }
       }
     },
-    "ValidezDocumentoTimbradoResponse" : {
+    "RetornoDatosAsegurado" : {
       "type" : "object",
       "properties" : {
-        "return" : {
-          "$ref" : "#/definitions/ValidezDocumentoResponse"
+        "lstDatosAsegurado" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/DatosAsegurado"
+          }
+        },
+        "returnCode" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "returnMessage" : {
+          "type" : "string"
         }
       }
     },
-    "ValidezDocumentoMaquinaRegistradoraResponse" : {
+    "DatosSalario" : {
       "type" : "object",
       "properties" : {
-        "return" : {
-          "$ref" : "#/definitions/ValidezDocumentoResponse"
+        "empleador" : {
+          "type" : "string"
+        },
+        "fecha" : {
+          "type" : "string"
+        },
+        "mesesAporte" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "numeroCI" : {
+          "type" : "string"
+        },
+        "salario" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "RetornoDatosSalario" : {
+      "type" : "object",
+      "properties" : {
+        "lstDatosSalario" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/DatosSalario"
+          }
+        },
+        "returnCode" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "returnMessage" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ListaDatosAOP" : {
+      "type" : "object",
+      "properties" : {
+        "des_actpri" : {
+          "type" : "string"
+        },
+        "des_emplea" : {
+          "type" : "string"
+        },
+        "des_sucurs" : {
+          "type" : "string"
+        },
+        "des_tipemp" : {
+          "type" : "string"
+        },
+        "dig_verificador" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "fec_iniact" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "fec_inscri" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "ide_emplea" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "ind_tipemp" : {
+          "type" : "string"
+        },
+        "nro_patron" : {
+          "type" : "string"
+        },
+        "nro_ruc" : {
+          "type" : "string"
+        },
+        "usu_ultmod" : {
+          "type" : "string"
+        }
+      }
+    },
+    "RetornoDatosAOP" : {
+      "type" : "object",
+      "properties" : {
+        "lstDatosAOP" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/ListaDatosAOP"
+          }
+        },
+        "returnCode" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "returnMessage" : {
+          "type" : "string"
         }
       }
     }

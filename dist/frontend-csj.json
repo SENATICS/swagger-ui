@@ -1,24 +1,19 @@
 {
   "swagger" : "2.0",
   "info" : {
-    "version" : "1.0",
-    "title" : "Servicio para obtener datos de empresas y empleados registrados en los Registros del MTESS"
+    "version" : "1.0"
   },
-  "host" : "sii.senatics.gov.py:8080",
-  "basePath" : "/mtess",
+  "basePath" : "/frontend-csj",
   "tags" : [ {
-    "name" : "empresa"
-  }, {
-    "name" : "empleado"
+    "name" : "csj"
   } ],
-  "schemes" : [ "http" ],
   "paths" : {
-    "/empresa/consultarRUC/{ruc}" : {
+    "/csj/findAntecedentesPenales" : {
       "get" : {
-        "tags" : [ "empresa" ],
-        "summary" : "Obtener listado de empleados de una empresa por ruc",
+        "tags" : [ "csj" ],
+        "summary" : "Realizar consultas de Antecedentes Penales.",
         "description" : "",
-        "operationId" : "consultarRUC",
+        "operationId" : "findAntecedentesPenalesSeguridad",
         "produces" : [ "application/json", "application/xml" ],
         "parameters" : [ {
           "name" : "Authorization",
@@ -31,16 +26,41 @@
           "required" : false,
           "type" : "string"
         }, {
-          "name" : "ruc",
-          "in" : "path",
-          "required" : true,
+          "name" : "nroDocumento",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "nombres",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "apellidos",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "nroDocumentoOtro",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "tipoDocumentoOtro",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "fechaNacimiento",
+          "in" : "query",
+          "required" : false,
           "type" : "string"
         } ],
         "responses" : {
           "200" : {
             "description" : "Operación correcta.",
             "schema" : {
-              "$ref" : "#/definitions/EmpresaResponse"
+              "$ref" : "#/definitions/ConsultaAdministrativaResponse"
             }
           },
           "400" : {
@@ -76,12 +96,12 @@
         }
       }
     },
-    "/empresa/consultarPatronal/{patronal}" : {
+    "/csj/findAntecedentesPenalesAdministrativas" : {
       "get" : {
-        "tags" : [ "empresa" ],
-        "summary" : "Obtener listado de empleados de una empresa por número patronal",
+        "tags" : [ "csj" ],
+        "summary" : "Realizar consultas Administrativas.",
         "description" : "",
-        "operationId" : "consultarPatronal",
+        "operationId" : "findAntecedentesPenalesAdministrativas",
         "produces" : [ "application/json", "application/xml" ],
         "parameters" : [ {
           "name" : "Authorization",
@@ -94,16 +114,41 @@
           "required" : false,
           "type" : "string"
         }, {
-          "name" : "patronal",
-          "in" : "path",
-          "required" : true,
+          "name" : "nroDocumento",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "nombres",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "apellidos",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "nroDocumentoOtro",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "tipoDocumentoOtro",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "fechaNacimiento",
+          "in" : "query",
+          "required" : false,
           "type" : "string"
         } ],
         "responses" : {
           "200" : {
             "description" : "Operación correcta.",
             "schema" : {
-              "$ref" : "#/definitions/EmpresaResponse"
+              "$ref" : "#/definitions/ConsultaAdministrativaResponse"
             }
           },
           "400" : {
@@ -139,12 +184,12 @@
         }
       }
     },
-    "/empleado/obtenerEmpleado/{documento}" : {
+    "/csj/findAntecedentesPenalesAdministrativasByCedula/{nrodocumento}" : {
       "get" : {
-        "tags" : [ "empleado" ],
-        "summary" : "Obtener datos de registro de empleado del MTESS por numero de cédula.",
+        "tags" : [ "csj" ],
+        "summary" : "Realizar consultas Administrativas.",
         "description" : "",
-        "operationId" : "getConsultaEmpleado",
+        "operationId" : "findAntecedentesPenalesByCedula",
         "produces" : [ "application/json", "application/xml" ],
         "parameters" : [ {
           "name" : "Authorization",
@@ -157,7 +202,7 @@
           "required" : false,
           "type" : "string"
         }, {
-          "name" : "documento",
+          "name" : "nrodocumento",
           "in" : "path",
           "required" : true,
           "type" : "string"
@@ -166,7 +211,7 @@
           "200" : {
             "description" : "Operación correcta.",
             "schema" : {
-              "$ref" : "#/definitions/PersonaResponse"
+              "$ref" : "#/definitions/ConsultaAdministrativaResponse"
             }
           },
           "400" : {
@@ -204,245 +249,148 @@
     }
   },
   "definitions" : {
-    "Empleado" : {
+    "AntecedentePenal" : {
       "type" : "object",
       "properties" : {
-        "nro_orden" : {
+        "codigoAntecedentePenal" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "fechaHoraUltimaActualizacion" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "circunscripcionesConsultadas" : {
           "type" : "string"
         },
-        "nombre" : {
+        "identificadorInformeUsuario" : {
+          "type" : "string"
+        },
+        "nombres" : {
           "type" : "string"
         },
         "apellidos" : {
           "type" : "string"
         },
-        "fecha_nac" : {
+        "nombreCompleto" : {
           "type" : "string"
         },
-        "ci" : {
+        "caratulaCausa" : {
           "type" : "string"
         },
-        "domicilio" : {
+        "hechosPunibles" : {
           "type" : "string"
         },
-        "distrito" : {
+        "despachoJudicialCaso" : {
           "type" : "string"
         },
-        "ciudad" : {
+        "nroExpediente" : {
           "type" : "string"
         },
-        "fechaentradaempleado" : {
+        "circunscripcion" : {
           "type" : "string"
         },
-        "estado" : {
+        "fechaHecho" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "lugarHecho" : {
           "type" : "string"
         },
-        "canthijos" : {
-          "type" : "integer",
-          "format" : "int32"
+        "descripcionTipoDocumento" : {
+          "type" : "string"
+        },
+        "documentoNro" : {
+          "type" : "string"
         },
         "nacionalidad" : {
           "type" : "string"
         },
-        "estado_civil" : {
+        "descripcionTipoDocumentoOtro" : {
           "type" : "string"
         },
-        "es_indigena" : {
+        "documentoNroOtro" : {
           "type" : "string"
         },
-        "empleado_cargo" : {
+        "fechaNacimiento" : {
+          "type" : "object"
+        },
+        "descripcionEstadoCivil" : {
           "type" : "string"
         },
-        "empleado_categoria" : {
+        "descripcionOcupacion" : {
           "type" : "string"
         },
-        "tipo_discapacidad" : {
+        "fechaActuacion" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "descripcionTipoActuacion" : {
           "type" : "string"
         },
-        "profesion" : {
+        "descripcionActuacionParte" : {
+          "type" : "string"
+        },
+        "descripcionEstadoProcesal" : {
+          "type" : "string"
+        },
+        "observaciones" : {
+          "type" : "string"
+        },
+        "estadoConfirmacion" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "descripcionEstadoConfirmacion" : {
+          "type" : "string"
+        },
+        "codigoCaso" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "ConsultaAdministrativaResponse" : {
+      "type" : "object",
+      "properties" : {
+        "consultaAdministrativaResult" : {
+          "$ref" : "#/definitions/ResultadoAntecedentesPenales"
+        }
+      }
+    },
+    "RespuestaConsulta" : {
+      "type" : "object",
+      "properties" : {
+        "tipo" : {
+          "$ref" : "#/definitions/TipoRespuesta"
+        },
+        "mensajeRespuesta" : {
           "type" : "string"
         }
       }
     },
-    "Empresa" : {
+    "ResultadoAntecedentesPenales" : {
       "type" : "object",
       "properties" : {
-        "nro_patronal" : {
-          "type" : "string"
-        },
-        "ruc" : {
-          "type" : "string"
-        },
-        "legal" : {
-          "type" : "string"
-        },
-        "fantasy" : {
-          "type" : "string"
-        },
-        "nro_patronal_ips" : {
-          "type" : "string"
-        },
-        "categoria_segun_mic" : {
-          "type" : "string"
-        },
-        "direccion" : {
-          "type" : "string"
-        },
-        "fecha_inscrip" : {
-          "type" : "string"
-        },
-        "activ_principal" : {
-          "type" : "string"
-        },
-        "tel" : {
-          "type" : "string"
-        },
-        "email" : {
-          "type" : "string"
-        },
-        "empresa_ciudad" : {
-          "type" : "string"
-        },
-        "cantidad_empleados_total" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "categoria_segun_cantidad_empleados" : {
-          "type" : "string"
-        },
-        "cantidad_empleados_hombres" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "cantidad_empleados_mujeres" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "situacion" : {
-          "type" : "string"
-        },
-        "tipo_sociedad" : {
-          "type" : "string"
-        },
-        "actividad_economica" : {
-          "type" : "string"
-        },
-        "tipo_empresa" : {
-          "type" : "string"
-        },
-        "id_activ_econ" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "empleados" : {
+        "listado" : {
           "type" : "array",
           "items" : {
-            "$ref" : "#/definitions/Empleado"
+            "$ref" : "#/definitions/AntecedentePenal"
           }
+        },
+        "resultado" : {
+          "$ref" : "#/definitions/RespuestaConsulta"
         }
       }
     },
-    "EmpresaResponse" : {
-      "type" : "object",
-      "properties" : {
-        "codeError" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "messageError" : {
-          "type" : "string"
-        },
-        "empresa" : {
-          "$ref" : "#/definitions/Empresa"
-        }
-      }
+    "TipoRespuesta" : {
+      "type" : "object"
     },
     "MessageResponse" : {
       "type" : "object",
       "properties" : {
         "message" : {
           "type" : "string"
-        }
-      }
-    },
-    "EmpresasEmpleados" : {
-      "type" : "object",
-      "properties" : {
-        "activo_empresa" : {
-          "type" : "string"
-        },
-        "empresa_actividad_econom" : {
-          "type" : "string"
-        },
-        "empresa_ciudad" : {
-          "type" : "string"
-        },
-        "empresa_departamento" : {
-          "type" : "string"
-        },
-        "empresa_nombre" : {
-          "type" : "string"
-        },
-        "empresa_nroPatronal" : {
-          "type" : "string"
-        },
-        "empresa_ruc" : {
-          "type" : "string"
-        }
-      }
-    },
-    "Persona" : {
-      "type" : "object",
-      "properties" : {
-        "apellidos" : {
-          "type" : "string"
-        },
-        "cantidadHijos" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "cedula" : {
-          "type" : "string"
-        },
-        "domicilio" : {
-          "type" : "string"
-        },
-        "empresasEmpleados" : {
-          "type" : "array",
-          "items" : {
-            "$ref" : "#/definitions/EmpresasEmpleados"
-          }
-        },
-        "estado_civil" : {
-          "type" : "string"
-        },
-        "fechaNacimiento" : {
-          "type" : "string",
-          "format" : "date-time"
-        },
-        "nacionalidad" : {
-          "type" : "string"
-        },
-        "nombre" : {
-          "type" : "string"
-        },
-        "sexo" : {
-          "type" : "string"
-        }
-      }
-    },
-    "PersonaResponse" : {
-      "type" : "object",
-      "properties" : {
-        "codeError" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "message" : {
-          "type" : "string"
-        },
-        "persona" : {
-          "$ref" : "#/definitions/Persona"
         }
       }
     }

@@ -2,23 +2,22 @@
   "swagger" : "2.0",
   "info" : {
     "version" : "1.0",
-    "title" : "Servicio para obtener datos de empresas y empleados registrados en los Registros del MTESS"
+    "title" : "Servicio para consultar datos de la SFP"
   },
-  "host" : "sii.senatics.gov.py:8080",
-  "basePath" : "/mtess",
+  "host" : "http://sii.senatics.gov.py:8080",
+  "basePath" : "/sfp",
   "tags" : [ {
-    "name" : "empresa"
+    "name" : "concurso publico"
   }, {
-    "name" : "empleado"
+    "name" : "funcionario"
   } ],
-  "schemes" : [ "http" ],
   "paths" : {
-    "/empresa/consultarRUC/{ruc}" : {
+    "/concursoPublico/obtenerDatosPorInstitucionID/{institucionId}" : {
       "get" : {
-        "tags" : [ "empresa" ],
-        "summary" : "Obtener listado de empleados de una empresa por ruc",
+        "tags" : [ "concurso publico" ],
+        "summary" : "Obtener datos de concursos público por ID de la Institución.",
         "description" : "",
-        "operationId" : "consultarRUC",
+        "operationId" : "findConcursosByInstitucionId",
         "produces" : [ "application/json", "application/xml" ],
         "parameters" : [ {
           "name" : "Authorization",
@@ -31,16 +30,17 @@
           "required" : false,
           "type" : "string"
         }, {
-          "name" : "ruc",
+          "name" : "institucionId",
           "in" : "path",
           "required" : true,
-          "type" : "string"
+          "type" : "integer",
+          "format" : "int32"
         } ],
         "responses" : {
           "200" : {
             "description" : "Operación correcta.",
             "schema" : {
-              "$ref" : "#/definitions/EmpresaResponse"
+              "$ref" : "#/definitions/GetConcursosPublicadosByIdResponse"
             }
           },
           "400" : {
@@ -76,12 +76,12 @@
         }
       }
     },
-    "/empresa/consultarPatronal/{patronal}" : {
+    "/concursoPublico/obtenerDeSiccaPorInstitucionID/{institucionId}" : {
       "get" : {
-        "tags" : [ "empresa" ],
-        "summary" : "Obtener listado de empleados de una empresa por número patronal",
+        "tags" : [ "concurso publico" ],
+        "summary" : "Obtener datos de concursos público del SICCA por ID de la Institución.",
         "description" : "",
-        "operationId" : "consultarPatronal",
+        "operationId" : "findConcursosSiccaByInstitucionId",
         "produces" : [ "application/json", "application/xml" ],
         "parameters" : [ {
           "name" : "Authorization",
@@ -94,16 +94,17 @@
           "required" : false,
           "type" : "string"
         }, {
-          "name" : "patronal",
+          "name" : "institucionId",
           "in" : "path",
           "required" : true,
-          "type" : "string"
+          "type" : "integer",
+          "format" : "int32"
         } ],
         "responses" : {
           "200" : {
             "description" : "Operación correcta.",
             "schema" : {
-              "$ref" : "#/definitions/EmpresaResponse"
+              "$ref" : "#/definitions/GetConcursosPublicadosByIdResponse"
             }
           },
           "400" : {
@@ -139,12 +140,12 @@
         }
       }
     },
-    "/empleado/obtenerEmpleado/{documento}" : {
+    "/funcionario/obtenerDatos/{numeroCI}" : {
       "get" : {
-        "tags" : [ "empleado" ],
-        "summary" : "Obtener datos de registro de empleado del MTESS por numero de cédula.",
+        "tags" : [ "funcionario" ],
+        "summary" : "Obtener datos de funcionario público por número de cédula.",
         "description" : "",
-        "operationId" : "getConsultaEmpleado",
+        "operationId" : "findConstanciaFuncionario",
         "produces" : [ "application/json", "application/xml" ],
         "parameters" : [ {
           "name" : "Authorization",
@@ -157,7 +158,7 @@
           "required" : false,
           "type" : "string"
         }, {
-          "name" : "documento",
+          "name" : "numeroCI",
           "in" : "path",
           "required" : true,
           "type" : "string"
@@ -166,7 +167,7 @@
           "200" : {
             "description" : "Operación correcta.",
             "schema" : {
-              "$ref" : "#/definitions/PersonaResponse"
+              "$ref" : "#/definitions/GetDatosFuncionariosResponse"
             }
           },
           "400" : {
@@ -204,156 +205,54 @@
     }
   },
   "definitions" : {
-    "Empleado" : {
+    "ConcursosDTO" : {
       "type" : "object",
       "properties" : {
-        "nro_orden" : {
-          "type" : "string"
-        },
-        "nombre" : {
-          "type" : "string"
-        },
-        "apellidos" : {
-          "type" : "string"
-        },
-        "fecha_nac" : {
-          "type" : "string"
-        },
-        "ci" : {
-          "type" : "string"
-        },
-        "domicilio" : {
-          "type" : "string"
-        },
-        "distrito" : {
-          "type" : "string"
-        },
-        "ciudad" : {
-          "type" : "string"
-        },
-        "fechaentradaempleado" : {
-          "type" : "string"
-        },
-        "estado" : {
-          "type" : "string"
-        },
-        "canthijos" : {
+        "cantidad" : {
           "type" : "integer",
           "format" : "int32"
         },
-        "nacionalidad" : {
+        "cargo" : {
           "type" : "string"
         },
-        "estado_civil" : {
+        "codigooee" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "entidad" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "idoee" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "nivel" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "oee" : {
           "type" : "string"
         },
-        "es_indigena" : {
+        "perfil" : {
           "type" : "string"
         },
-        "empleado_cargo" : {
+        "tipoConcurso" : {
           "type" : "string"
         },
-        "empleado_categoria" : {
-          "type" : "string"
-        },
-        "tipo_discapacidad" : {
-          "type" : "string"
-        },
-        "profesion" : {
+        "valor" : {
           "type" : "string"
         }
       }
     },
-    "Empresa" : {
+    "GetConcursosPublicadosByIdResponse" : {
       "type" : "object",
       "properties" : {
-        "nro_patronal" : {
-          "type" : "string"
-        },
-        "ruc" : {
-          "type" : "string"
-        },
-        "legal" : {
-          "type" : "string"
-        },
-        "fantasy" : {
-          "type" : "string"
-        },
-        "nro_patronal_ips" : {
-          "type" : "string"
-        },
-        "categoria_segun_mic" : {
-          "type" : "string"
-        },
-        "direccion" : {
-          "type" : "string"
-        },
-        "fecha_inscrip" : {
-          "type" : "string"
-        },
-        "activ_principal" : {
-          "type" : "string"
-        },
-        "tel" : {
-          "type" : "string"
-        },
-        "email" : {
-          "type" : "string"
-        },
-        "empresa_ciudad" : {
-          "type" : "string"
-        },
-        "cantidad_empleados_total" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "categoria_segun_cantidad_empleados" : {
-          "type" : "string"
-        },
-        "cantidad_empleados_hombres" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "cantidad_empleados_mujeres" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "situacion" : {
-          "type" : "string"
-        },
-        "tipo_sociedad" : {
-          "type" : "string"
-        },
-        "actividad_economica" : {
-          "type" : "string"
-        },
-        "tipo_empresa" : {
-          "type" : "string"
-        },
-        "id_activ_econ" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "empleados" : {
+        "return" : {
           "type" : "array",
           "items" : {
-            "$ref" : "#/definitions/Empleado"
+            "$ref" : "#/definitions/ConcursosDTO"
           }
-        }
-      }
-    },
-    "EmpresaResponse" : {
-      "type" : "object",
-      "properties" : {
-        "codeError" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "messageError" : {
-          "type" : "string"
-        },
-        "empresa" : {
-          "$ref" : "#/definitions/Empresa"
         }
       }
     },
@@ -365,84 +264,134 @@
         }
       }
     },
-    "EmpresasEmpleados" : {
+    "ConstanciaDTO" : {
       "type" : "object",
       "properties" : {
-        "activo_empresa" : {
+        "codigoStatus" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "descripcionStatus" : {
           "type" : "string"
         },
-        "empresa_actividad_econom" : {
+        "fecha" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "mensajeError" : {
           "type" : "string"
         },
-        "empresa_ciudad" : {
+        "nomina" : {
           "type" : "string"
         },
-        "empresa_departamento" : {
+        "sinarh" : {
           "type" : "string"
         },
-        "empresa_nombre" : {
-          "type" : "string"
+        "sistemaNomina" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/NominaDTO"
+          }
         },
-        "empresa_nroPatronal" : {
-          "type" : "string"
-        },
-        "empresa_ruc" : {
-          "type" : "string"
+        "sistemaSinarh" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/SinarhDTO"
+          }
         }
       }
     },
-    "Persona" : {
+    "GetDatosFuncionariosResponse" : {
       "type" : "object",
       "properties" : {
-        "apellidos" : {
-          "type" : "string"
-        },
-        "cantidadHijos" : {
+        "return" : {
+          "$ref" : "#/definitions/ConstanciaDTO"
+        }
+      }
+    },
+    "NominaDTO" : {
+      "type" : "object",
+      "properties" : {
+        "anio" : {
           "type" : "integer",
           "format" : "int32"
         },
         "cedula" : {
           "type" : "string"
         },
-        "domicilio" : {
+        "descripcionOEE" : {
           "type" : "string"
         },
-        "empresasEmpleados" : {
-          "type" : "array",
-          "items" : {
-            "$ref" : "#/definitions/EmpresasEmpleados"
-          }
-        },
-        "estado_civil" : {
+        "estado" : {
           "type" : "string"
         },
-        "fechaNacimiento" : {
-          "type" : "string",
-          "format" : "date-time"
-        },
-        "nacionalidad" : {
+        "funcion" : {
           "type" : "string"
         },
-        "nombre" : {
-          "type" : "string"
-        },
-        "sexo" : {
-          "type" : "string"
-        }
-      }
-    },
-    "PersonaResponse" : {
-      "type" : "object",
-      "properties" : {
-        "codeError" : {
+        "mes" : {
           "type" : "integer",
           "format" : "int32"
         },
-        "message" : {
+        "movimiento" : {
           "type" : "string"
         },
-        "persona" : {
-          "$ref" : "#/definitions/Persona"
+        "nombreCompleto" : {
+          "type" : "string"
+        },
+        "objGasto" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "SinarhDTO" : {
+      "type" : "object",
+      "properties" : {
+        "anioSinarh" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "cedula" : {
+          "type" : "string"
+        },
+        "estado" : {
+          "type" : "string"
+        },
+        "excepcionsfp" : {
+          "type" : "string"
+        },
+        "fechaFin" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "fechaInicio" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "funcionSinarh" : {
+          "type" : "string"
+        },
+        "funcionario" : {
+          "type" : "string"
+        },
+        "motivoBaja" : {
+          "type" : "string"
+        },
+        "nombreEntidad" : {
+          "type" : "string"
+        },
+        "objGasto" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "tipo" : {
+          "type" : "string"
+        },
+        "ultimoMesCobro" : {
+          "type" : "string"
+        },
+        "unidadResponsable" : {
+          "type" : "string"
         }
       }
     }

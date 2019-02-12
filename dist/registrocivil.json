@@ -2,31 +2,20 @@
   "swagger" : "2.0",
   "info" : {
     "version" : "1.0",
-    "title" : "Servicio para consultar datos de la SET"
+    "title" : "Servicio para consultar datos de la DGREC"
   },
-  "host" : "sii.senatics.gov.py:8080",
-  "basePath" : "/set",
+  "host" : "http://sii.senatics.gov.py:8080",
+  "basePath" : "/registrocivil",
   "tags" : [ {
-    "name" : "ruc"
-  }, {
-    "name" : "rucSET"
-  }, {
-    "name" : "timbradoSET"
-  }, {
-    "name" : "maquinaRegistradoraSET"
-  }, {
-    "name" : "timbrado"
-  }, {
-    "name" : "maquinaRegistradora"
+    "name" : "actas"
   } ],
-  "schemes" : [ "http" ],
   "paths" : {
-    "/ruc/obtenerDatos" : {
+    "/actas/obtenerActasDefunciones" : {
       "get" : {
-        "tags" : [ "ruc" ],
-        "summary" : "Método exclusivo para sistemas de la SENATICs para obtener datos de RUC por numero de ruc y dv",
+        "tags" : [ "actas" ],
+        "summary" : "Obtener actas de defunción.",
         "description" : "",
-        "operationId" : "findConsultaRuc",
+        "operationId" : "obtenerActasDefunciones",
         "produces" : [ "application/json", "application/xml" ],
         "parameters" : [ {
           "name" : "Authorization",
@@ -39,179 +28,48 @@
           "required" : false,
           "type" : "string"
         }, {
-          "name" : "ruc",
+          "name" : "nombres",
           "in" : "query",
           "required" : false,
           "type" : "string"
         }, {
-          "name" : "dv",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Operación correcta.",
-            "schema" : {
-              "$ref" : "#/definitions/ConsultaRucResponse"
-            }
-          },
-          "400" : {
-            "description" : "Petición incorrecta.",
-            "schema" : {
-              "$ref" : "#/definitions/MessageResponse"
-            }
-          },
-          "401" : {
-            "description" : "Credenciales incorrectas",
-            "schema" : {
-              "$ref" : "#/definitions/MessageResponse"
-            }
-          },
-          "403" : {
-            "description" : "El usuario no cuenta con los permisos suficientes para acceder al recurso solicitado.",
-            "schema" : {
-              "$ref" : "#/definitions/MessageResponse"
-            }
-          },
-          "404" : {
-            "description" : "El recurso solicitado no existe.",
-            "schema" : {
-              "$ref" : "#/definitions/MessageResponse"
-            }
-          },
-          "500" : {
-            "description" : "El sistema no se encuentra disponible. Por favor contacte con el administrador del sistema gobiernoelectronico@senatics.gov.py",
-            "schema" : {
-              "$ref" : "#/definitions/MessageResponse"
-            }
-          }
-        }
-      }
-    },
-    "/rucSET/obtenerDatos" : {
-      "get" : {
-        "tags" : [ "rucSET" ],
-        "summary" : "Obtener datos de RUC por numero de ruc, dv y apiKey",
-        "description" : "",
-        "operationId" : "findConsultaRucSet",
-        "produces" : [ "application/json", "application/xml", "application/xhtml+xml" ],
-        "parameters" : [ {
-          "name" : "Authorization",
-          "in" : "header",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "Accept",
-          "in" : "header",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "ruc",
+          "name" : "primerApellido",
           "in" : "query",
           "required" : false,
           "type" : "string"
         }, {
-          "name" : "dv",
+          "name" : "segundoApellido",
           "in" : "query",
           "required" : false,
           "type" : "string"
         }, {
-          "name" : "apiKey",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Operación correcta.",
-            "schema" : {
-              "$ref" : "#/definitions/ConsultaRucResponse"
-            }
-          },
-          "400" : {
-            "description" : "Petición incorrecta.",
-            "schema" : {
-              "$ref" : "#/definitions/MessageResponse"
-            }
-          },
-          "401" : {
-            "description" : "Credenciales incorrectas",
-            "schema" : {
-              "$ref" : "#/definitions/MessageResponse"
-            }
-          },
-          "403" : {
-            "description" : "El usuario no cuenta con los permisos suficientes para acceder al recurso solicitado.",
-            "schema" : {
-              "$ref" : "#/definitions/MessageResponse"
-            }
-          },
-          "404" : {
-            "description" : "El recurso solicitado no existe.",
-            "schema" : {
-              "$ref" : "#/definitions/MessageResponse"
-            }
-          },
-          "500" : {
-            "description" : "El sistema no se encuentra disponible. Por favor contacte con el administrador del sistema gobiernoelectronico@senatics.gov.py",
-            "schema" : {
-              "$ref" : "#/definitions/MessageResponse"
-            }
-          }
-        }
-      }
-    },
-    "/timbradoSET/validarDocumento" : {
-      "get" : {
-        "tags" : [ "timbradoSET" ],
-        "summary" : "Validar el Timbrado del Documento",
-        "description" : "",
-        "operationId" : "findValidezDocumentoTimbradoSet",
-        "produces" : [ "application/json", "application/xml", "application/xhtml+xml" ],
-        "parameters" : [ {
-          "name" : "Authorization",
-          "in" : "header",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "Accept",
-          "in" : "header",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "ruc",
+          "name" : "fechaDeNacimiento",
           "in" : "query",
           "required" : false,
           "type" : "string"
         }, {
-          "name" : "dv",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "apiKey",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "numeroTimbrado",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "tipoDocumento",
+          "name" : "sistemaDeConsulta",
           "in" : "query",
           "required" : false,
           "type" : "integer",
           "format" : "int32"
         }, {
-          "name" : "numeroDocumento",
+          "name" : "numeroDeActa",
           "in" : "query",
           "required" : false,
           "type" : "string"
         }, {
-          "name" : "fechaExpedicion",
+          "name" : "numeroDeFolio",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "codigoDeLibro",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "numeroDeTomo",
           "in" : "query",
           "required" : false,
           "type" : "string"
@@ -220,7 +78,7 @@
           "200" : {
             "description" : "Operación correcta.",
             "schema" : {
-              "$ref" : "#/definitions/ValidezDocumentoTimbradoResponse"
+              "$ref" : "#/definitions/RespuestaActaDefuncion"
             }
           },
           "400" : {
@@ -256,13 +114,13 @@
         }
       }
     },
-    "/maquinaRegistradoraSET/validarDocumento" : {
+    "/actas/obtenerActasDefuncionesPorCedula/{cedula}/{sistemaDeConsulta}" : {
       "get" : {
-        "tags" : [ "maquinaRegistradoraSET" ],
-        "summary" : "Validar máquina registradora de documentos",
+        "tags" : [ "actas" ],
+        "summary" : "Obtener actas de defunción. A partir de una cédula de identidad.",
         "description" : "",
-        "operationId" : "findValidezDocumentoMaquinaRegistradoraSet",
-        "produces" : [ "application/json", "application/xml", "application/xhtml+xml" ],
+        "operationId" : "obtenerActasDefuncionesPorCedula",
+        "produces" : [ "application/json", "application/xml" ],
         "parameters" : [ {
           "name" : "Authorization",
           "in" : "header",
@@ -274,36 +132,22 @@
           "required" : false,
           "type" : "string"
         }, {
-          "name" : "ruc",
-          "in" : "query",
-          "required" : false,
+          "name" : "cedula",
+          "in" : "path",
+          "required" : true,
           "type" : "string"
         }, {
-          "name" : "dv",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "apiKey",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "numeroTimbrado",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "fechaExpedicion",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
+          "name" : "sistemaDeConsulta",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
         } ],
         "responses" : {
           "200" : {
             "description" : "Operación correcta.",
             "schema" : {
-              "$ref" : "#/definitions/ValidezDocumentoMaquinaRegistradoraResponse"
+              "$ref" : "#/definitions/RespuestaActaDefuncion"
             }
           },
           "400" : {
@@ -339,13 +183,13 @@
         }
       }
     },
-    "/timbrado/validarDocumento" : {
+    "/actas/obtenerActasMatrimoniosPorCedula/{sistemaDeConsulta}" : {
       "get" : {
-        "tags" : [ "timbrado" ],
-        "summary" : "Validar el Timbrado del Documento sin api key exclusivo para la SENATICs.",
+        "tags" : [ "actas" ],
+        "summary" : "Obtener actas de matrimonio. A partir de una cédula de identidad.",
         "description" : "",
-        "operationId" : "findValidezDocumentoTimbrado",
-        "produces" : [ "application/json", "application/xml", "application/xhtml+xml" ],
+        "operationId" : "obtenerActasMatrimoniosPorCedula",
+        "produces" : [ "application/json", "application/xml" ],
         "parameters" : [ {
           "name" : "Authorization",
           "in" : "header",
@@ -357,33 +201,142 @@
           "required" : false,
           "type" : "string"
         }, {
-          "name" : "ruc",
+          "name" : "sistemaDeConsulta",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "cedulaVaron",
           "in" : "query",
           "required" : false,
           "type" : "string"
         }, {
-          "name" : "dv",
+          "name" : "cedulaMujer",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Operación correcta.",
+            "schema" : {
+              "$ref" : "#/definitions/RespuestaActaDefuncion"
+            }
+          },
+          "400" : {
+            "description" : "Petición incorrecta.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "401" : {
+            "description" : "Credenciales incorrectas",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "403" : {
+            "description" : "El usuario no cuenta con los permisos suficientes para acceder al recurso solicitado.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "404" : {
+            "description" : "El recurso solicitado no existe.",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          },
+          "500" : {
+            "description" : "El sistema no se encuentra disponible. Por favor contacte con el administrador del sistema gobiernoelectronico@senatics.gov.py",
+            "schema" : {
+              "$ref" : "#/definitions/MessageResponse"
+            }
+          }
+        }
+      }
+    },
+    "/actas/obtenerActasMatrimonios" : {
+      "get" : {
+        "tags" : [ "actas" ],
+        "summary" : "Obtener actas de defunción. A partir de una cédula de identidad.",
+        "description" : "",
+        "operationId" : "obtenerActasMatrimonios",
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "nombresVaron",
           "in" : "query",
           "required" : false,
           "type" : "string"
         }, {
-          "name" : "numeroTimbrado",
+          "name" : "primerApellidoVaron",
           "in" : "query",
           "required" : false,
           "type" : "string"
         }, {
-          "name" : "tipoDocumento",
+          "name" : "segundoApellidoVaron",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "fechaDeNacimientoVaron",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "nombresMujer",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "primerApellidoMujer",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "segundoApellidoMujer",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "fechaDeNacimientoMujer",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "sistemaDeConsulta",
           "in" : "query",
           "required" : false,
           "type" : "integer",
           "format" : "int32"
         }, {
-          "name" : "numeroDocumento",
+          "name" : "numeroDeActa",
           "in" : "query",
           "required" : false,
           "type" : "string"
         }, {
-          "name" : "fechaExpedicion",
+          "name" : "numeroDeFolio",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "codigoDeLibro",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "numeroDeTomo",
           "in" : "query",
           "required" : false,
           "type" : "string"
@@ -392,7 +345,7 @@
           "200" : {
             "description" : "Operación correcta.",
             "schema" : {
-              "$ref" : "#/definitions/ValidezDocumentoTimbradoResponse"
+              "$ref" : "#/definitions/RespuestaActaDefuncion"
             }
           },
           "400" : {
@@ -428,13 +381,13 @@
         }
       }
     },
-    "/maquinaRegistradora/validarDocumento" : {
+    "/actas/obtenerActaNacimiento" : {
       "get" : {
-        "tags" : [ "maquinaRegistradora" ],
-        "summary" : "Validar máquina registradora de documentos, método de uso exclusivo para la SENATICs.",
+        "tags" : [ "actas" ],
+        "summary" : "Obtener actas de nacimiento",
         "description" : "",
-        "operationId" : "findValidezDocumentoMaquinaRegistradora",
-        "produces" : [ "application/json", "application/xml", "application/xhtml+xml" ],
+        "operationId" : "obtenerActaNacimiento",
+        "produces" : [ "application/json", "application/xml" ],
         "parameters" : [ {
           "name" : "Authorization",
           "in" : "header",
@@ -446,22 +399,48 @@
           "required" : false,
           "type" : "string"
         }, {
-          "name" : "ruc",
+          "name" : "nombres",
           "in" : "query",
           "required" : false,
           "type" : "string"
         }, {
-          "name" : "dv",
+          "name" : "primerApellido",
           "in" : "query",
           "required" : false,
           "type" : "string"
         }, {
-          "name" : "numeroTimbrado",
+          "name" : "segundoApellido",
           "in" : "query",
           "required" : false,
           "type" : "string"
         }, {
-          "name" : "fechaExpedicion",
+          "name" : "fechaDeNacimiento",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "sistemaDeConsulta",
+          "in" : "query",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "numeroDeActa",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "numeroDeFolio",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "codigoDeLibro",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "numeroDeTomo",
           "in" : "query",
           "required" : false,
           "type" : "string"
@@ -470,7 +449,7 @@
           "200" : {
             "description" : "Operación correcta.",
             "schema" : {
-              "$ref" : "#/definitions/ValidezDocumentoMaquinaRegistradoraResponse"
+              "$ref" : "#/definitions/RespuestaActaNacimiento"
             }
           },
           "400" : {
@@ -508,63 +487,131 @@
     }
   },
   "definitions" : {
-    "ConsultaRucResponse" : {
+    "ActaDefuncion" : {
       "type" : "object",
       "properties" : {
-        "return" : {
-          "$ref" : "#/definitions/InfoContribuyenteResponse"
+        "cedulaUltimoConyuge" : {
+          "type" : "string"
+        },
+        "codEstadoCivil" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "codInscripcionTipo" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "codPaisDefuncion" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "codSexo" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "departamento" : {
+          "type" : "string"
+        },
+        "documIden" : {
+          "type" : "string"
+        },
+        "domicilio" : {
+          "type" : "string"
+        },
+        "estadoCivil" : {
+          "type" : "string"
+        },
+        "fechaDef" : {
+          "type" : "string"
+        },
+        "fechaInscripcion" : {
+          "type" : "string"
+        },
+        "folioLibro" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "horaDef" : {
+          "type" : "string"
+        },
+        "lugarDefuncion" : {
+          "type" : "string"
+        },
+        "lugarInscripcion" : {
+          "type" : "string"
+        },
+        "lugarNac" : {
+          "type" : "string"
+        },
+        "municipioInscripto" : {
+          "type" : "string"
+        },
+        "nacimientoFecha" : {
+          "type" : "string"
+        },
+        "nacionalidadInscripto" : {
+          "type" : "string"
+        },
+        "nombresApellidosUltimoConyuge" : {
+          "type" : "string"
+        },
+        "nombresInscripto" : {
+          "type" : "string"
+        },
+        "nroLibroVolumen" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "numeroActa" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "observacion" : {
+          "type" : "string"
+        },
+        "oficinaFilial" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "oficinaFilialDescripcion" : {
+          "type" : "string"
+        },
+        "pais" : {
+          "type" : "string"
+        },
+        "primerApe" : {
+          "type" : "string"
+        },
+        "segundoApe" : {
+          "type" : "string"
+        },
+        "sexo" : {
+          "type" : "string"
+        },
+        "tomoNro" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "zonaInscripto" : {
+          "type" : "string"
         }
       }
     },
-    "Contribuyente" : {
+    "RespuestaActaDefuncion" : {
       "type" : "object",
       "properties" : {
-        "categoria" : {
-          "type" : "string"
+        "codError" : {
+          "type" : "integer",
+          "format" : "int32"
         },
-        "dv" : {
-          "type" : "string"
-        },
-        "estado" : {
-          "type" : "string"
-        },
-        "mesCierre" : {
-          "type" : "string"
-        },
-        "razonSocial" : {
-          "type" : "string"
-        },
-        "ruc" : {
-          "type" : "string"
-        },
-        "rucAnterior" : {
-          "type" : "string"
-        },
-        "tipoPersona" : {
-          "type" : "string"
-        },
-        "tipoSociedad" : {
-          "type" : "string"
-        },
-        "valido" : {
-          "type" : "string"
-        }
-      }
-    },
-    "InfoContribuyenteResponse" : {
-      "type" : "object",
-      "properties" : {
-        "codigo" : {
-          "type" : "string"
-        },
-        "estado" : {
-          "type" : "string"
+        "listActaDefuncion" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/ActaDefuncion"
+          }
         },
         "mensaje" : {
           "type" : "string"
-        },
-        "contribuyente" : {
-          "$ref" : "#/definitions/Contribuyente"
         }
       }
     },
@@ -576,33 +623,138 @@
         }
       }
     },
-    "ValidezDocumentoResponse" : {
+    "ActaNacimiento" : {
       "type" : "object",
       "properties" : {
-        "codigo" : {
+        "codInscripcionTipo" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "codSexo" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "declarante" : {
           "type" : "string"
         },
-        "estado" : {
+        "departamento" : {
           "type" : "string"
+        },
+        "documIdenMadre" : {
+          "type" : "string"
+        },
+        "documIdenPadre" : {
+          "type" : "string"
+        },
+        "fechaInscripcion" : {
+          "type" : "string"
+        },
+        "fechaNac" : {
+          "type" : "string"
+        },
+        "folioLibro" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "horaNac" : {
+          "type" : "string"
+        },
+        "lugarNac" : {
+          "type" : "string"
+        },
+        "municipioInscripto" : {
+          "type" : "string"
+        },
+        "nacionalidadInscripto" : {
+          "type" : "string"
+        },
+        "nombresInscripto" : {
+          "type" : "string"
+        },
+        "nombresMadre" : {
+          "type" : "string"
+        },
+        "nombresPadre" : {
+          "type" : "string"
+        },
+        "nroLibroVolumen" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "numCertificadoNac" : {
+          "type" : "string"
+        },
+        "numeroActa" : {
+          "type" : "string"
+        },
+        "numeroUnico" : {
+          "type" : "string"
+        },
+        "observacion" : {
+          "type" : "string"
+        },
+        "oficinaFilial" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "oficinaFilialDescripcion" : {
+          "type" : "string"
+        },
+        "pais" : {
+          "type" : "string"
+        },
+        "primerApe" : {
+          "type" : "string"
+        },
+        "primerApeMadre" : {
+          "type" : "string"
+        },
+        "primerApePadre" : {
+          "type" : "string"
+        },
+        "segundoApe" : {
+          "type" : "string"
+        },
+        "segundoApeMadre" : {
+          "type" : "string"
+        },
+        "segundoApePadre" : {
+          "type" : "string"
+        },
+        "sexo" : {
+          "type" : "string"
+        },
+        "sistemaDeConsulta" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "tipoDocMadre" : {
+          "type" : "string"
+        },
+        "tipoDocPadre" : {
+          "type" : "string"
+        },
+        "tomoNro" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "zonaInscripto" : {
+          "type" : "string"
+        }
+      }
+    },
+    "RespuestaActaNacimiento" : {
+      "type" : "object",
+      "properties" : {
+        "actaDeNacimiento" : {
+          "$ref" : "#/definitions/ActaNacimiento"
+        },
+        "codError" : {
+          "type" : "integer",
+          "format" : "int32"
         },
         "mensaje" : {
           "type" : "string"
-        }
-      }
-    },
-    "ValidezDocumentoTimbradoResponse" : {
-      "type" : "object",
-      "properties" : {
-        "return" : {
-          "$ref" : "#/definitions/ValidezDocumentoResponse"
-        }
-      }
-    },
-    "ValidezDocumentoMaquinaRegistradoraResponse" : {
-      "type" : "object",
-      "properties" : {
-        "return" : {
-          "$ref" : "#/definitions/ValidezDocumentoResponse"
         }
       }
     }

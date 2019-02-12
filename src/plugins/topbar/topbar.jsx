@@ -2,7 +2,8 @@ import React, { cloneElement } from "react"
 import PropTypes from "prop-types"
 
 //import "./topbar.less"
-import Logo from "./senatics.png"
+import Logo from "./Gobierno-Nacional-ALT.png"
+import LogoParaguayDelaGente from "./Paraguay-de-la-Gente-ALT.png"
 import {parseSearch, serializeSearch} from "../../core/utils"
 
 export default class Topbar extends React.Component {
@@ -165,7 +166,8 @@ export default class Topbar extends React.Component {
         <div className="wrapper">
           <div className="topbar-wrapper">
             <Link>
-              <img src={ Logo } alt="SENATICs"/>
+              <img src={ Logo } alt="GOBIERNO NACIONAL"/>
+              <img src={ LogoParaguayDelaGente } alt="PARAGUAY DE LA GENTE"/>
               <span></span>
             </Link>
             <form className="download-url-wrapper" onSubmit={formOnSubmit}>

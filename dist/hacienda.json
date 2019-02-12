@@ -4,12 +4,11 @@
     "version" : "1.0",
     "title" : "Servicio para consultar datos del Ministerio de Hacienda"
   },
-  "host" : "sii.senatics.gov.py:8080",
+  "host" : "http://sii.senatics.gov.py:8080",
   "basePath" : "/hacienda",
   "tags" : [ {
     "name" : "hacienda"
   } ],
-  "schemes" : [ "http" ],
   "paths" : {
     "/hacienda/obtenerEntidades" : {
       "get" : {

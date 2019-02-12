@@ -4,7 +4,7 @@
     "version" : "1.0",
     "title" : "Servicio para consultar datos de la SET"
   },
-  "host" : "sii.senatics.gov.py:8080",
+  "host" : "http://sii.senatics.gov.py:8080",
   "basePath" : "/set",
   "tags" : [ {
     "name" : "ruc"
@@ -19,7 +19,6 @@
   }, {
     "name" : "maquinaRegistradora"
   } ],
-  "schemes" : [ "http" ],
   "paths" : {
     "/ruc/obtenerDatos" : {
       "get" : {

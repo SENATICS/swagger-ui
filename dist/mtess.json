@@ -4,14 +4,13 @@
     "version" : "1.0",
     "title" : "Servicio para obtener datos de empresas y empleados registrados en los Registros del MTESS"
   },
-  "host" : "sii.senatics.gov.py:8080",
+  "host" : "http://sii.senatics.gov.py:8080",
   "basePath" : "/mtess",
   "tags" : [ {
     "name" : "empresa"
   }, {
     "name" : "empleado"
   } ],
-  "schemes" : [ "http" ],
   "paths" : {
     "/empresa/consultarRUC/{ruc}" : {
       "get" : {

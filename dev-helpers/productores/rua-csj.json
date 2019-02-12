@@ -4,12 +4,11 @@
     "version" : "1.0",
     "title" : "Servicio para consultar datos de la DGRA"
   },
-  "host" : "sii.senatics.gov.py:8080",
+  "host" : "http://sii.senatics.gov.py:8080",
   "basePath" : "/rua-csj",
   "tags" : [ {
     "name" : "automotor"
   } ],
-  "schemes" : [ "http" ],
   "paths" : {
     "/automotor/consultarRua" : {
       "get" : {

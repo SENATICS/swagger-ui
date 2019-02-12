@@ -4,7 +4,7 @@
     "version" : "1.0",
     "title" : "Servicio para consultar datos la DGRP"
   },
-  "host" : "sii.senatics.gov.py:8080",
+  "host" : "http://sii.senatics.gov.py:8080",
   "basePath" : "/dgrp-csj",
   "tags" : [ {
     "name" : "Inmuebles"
@@ -13,7 +13,6 @@
   }, {
     "name" : "Personas Juridicas"
   } ],
-  "schemes" : [ "http" ],
   "paths" : {
     "/inmuebles/obtenerInmueblesPorNombre" : {
       "get" : {
